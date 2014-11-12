@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>开始 - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato|Inconsolata' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/guide/" class="nav-link current">入门</a></li>
+<li><a href="/api/" class="nav-link">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+</div>
+        
+
+        <div id="main">
+            
+                
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li><a href="/guide/" class="nav-link current">入门</a></li>
+<li><a href="/api/" class="nav-link">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+    <div class="list">
+        <h2>Guide</h2>
+        <ul class="menu-root">
+            
+                <li><a href="/guide/installation.html" class="sidebar-link">安装</a></li>
+            
+                <li><a href="/guide/index.html" class="sidebar-link current">开始</a></li>
+            
+                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+            
+                <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
+            
+                <li><a href="/guide/list.html" class="sidebar-link">显示一个列表</a></li>
+            
+                <li><a href="/guide/events.html" class="sidebar-link">监听消息</a></li>
+            
+                <li><a href="/guide/forms.html" class="sidebar-link">处理表单</a></li>
+            
+                <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
+            
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+            
+                <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
+            
+                <li><a href="/guide/components.html" class="sidebar-link">组件系统</a></li>
+            
+                <li><a href="/guide/transitions.html" class="sidebar-link">转变</a></li>
+            
+                <li><a href="/guide/application.html" class="sidebar-link">构建大型程序</a></li>
+            
+                <li><a href="/guide/extending.html" class="sidebar-link">扩展 Vue</a></li>
+            
+                <li><a href="/guide/faq.html" class="sidebar-link">普通的FAQS</a></li>
+            
+            <li><a href="http://legacy.vuejs.org">Looking for 0.10 docs?</a></li>
+            <li style="margin:10px 0 3px">
+              <script data-gittip-username="yyx990803"
+                data-gittip-widget="button"
+                src="//gttp.co/v1.js"></script>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="content guide with-sidebar">
+    <h1>开始</h1>
+    <h2 id="介绍">介绍</h2>
+<p>Vue.js是一个为了构建交互性web接口的库。</p>
+<p>技术上，Vue.js关注点在MVVM模式的<a href="#ViewModel">ViewModel</a>层。它通过双向数据绑定来连接<a href="#View">View</a>和<a href="#Model">Model</a>。实际的Dom操作和输出格式化被抽象到<a href="">Directives</a>和<a href="#Filters">Filters</a>。</p>
+<p>在哲学上，目标是提供通过尽可能简单的API来实现的双向数据绑定和可组合的视图组件的好处。它不是一个完整的框架 - 它被设计成一个简单的灵活的视图层。你可以单独它来快速进行原型设计，也可以和其他库结合使用来自定义前端。它也是无后端服务的例如<code>Firebase</code>的天作之合。</p>
+<p>Vue.js的API深受<a href="http://angularjs.org" target="_blank" rel="external">AngularJS</a>，<a href="http://knockoutjs.com" target="_blank" rel="external">KnockoutJS</a>，<a href="http://ractivejs.org" target="_blank" rel="external">Ractive.js</a>以及<a href="http://www.rivetsjs.com" target="_blank" rel="external">Rivets.js</a>的影响。尽管类似，但是我相信Vue.js给那些已存在的库在简单和功能之间寻找平衡提供了可选的价值。</p>
+<p>即使你已经很熟悉他们中的一些，这里推荐你去阅读概览因为你对这些的见解可能和他们在Vue.js环境下不太一样。</p>
+<h2 id="概览">概览</h2>
+<h3 id="ViewModel">ViewModel</h3>
+<p>一个同步Model和View的对象。在Vue.js，每一个Vue实例是一个ViewModel。他们是<code>Vue</code>构造函数或者他们子类的实例化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue({ <span class="comment">/* options */</span> })</div></pre></td></tr></table></figure>
+
+<p>做为一个使用Vue.js的开发者，这是你碰到的首要的对象。更多内容请看<a href="/api/">Class: Vue</a></p>
+<h3 id="View">View</h3>
+<p>被Vue对象管理的实际的DOM。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vm.$el <span class="comment">// The View</span></div></pre></td></tr></table></figure>
+
+<p>Vue.js使用基于DOM的模板，每一个Vue实例和一个对应的DOM元素关联。当一个Vue实例被创建，它递归的遍历根节点下所有的子节点同时设置必要的数据绑定。View完成编译，它就和数据之间完成了双向绑定。</p>
+<p>当使用Vue.js，你几乎不需要自己接触DOM，除非你要自定义directives（稍后解释）。当数据变了的时候视图的更新将会自动被触发。视图的更新是高度颗粒化到一个文本节点。为了更好的效率它们还是批量和异步执行的。</p>
+<h3 id="Model">Model</h3>
+<p>A slightly modified plain JavaScript object.</p>
+<p>一个稍稍改动的普通的Javascript对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vm.$data <span class="comment">// The Model</span></div></pre></td></tr></table></figure>
+
+<p>在Vue.js，模型是简单的javascript对象，或者<strong>data objects</strong>。你可以管理它们的属性而且变换可以被观察它们的Vue实例感知到。这里的Vue.js实现是通过转换data的属性到ES5的getting/settings上。这里不需要脏检查，也不需要精确的通知Vue去更新视图。无论何时数据更新，视图都会在下一帧的时候更新。</p>
+<p>Vue实例代理了所有它观察的对象的属性。所以一旦一个对象<code>{a: 1}</code>被观察，<code>vm.$data.a</code>和<code>vm.a</code>将会返回相同的值，而且<code>vm.a = 2</code>将会修改<code>vm.$data</code>。</p>
+<p>数据对象在某处被修改，修改<code>vm.$data</code>有一样的效果。在大型的软件中对待Vue对象为纯的视图，而且数据管理逻辑外形化到更离散的存储层是被推荐的。</p>
+<p>这里有一个需要警告的是一旦这种观察的关系初始化，Vue.js将不会观察到新的增加和删除属性操作。要应付这个问题，需要被观察的对象增强<code>$add</code>和<code>$delete</code>方法。</p>
+<h3 id="Directives">Directives</h3>
+<p>HTML前置属性，告诉Vue.js对Dom元素做的事情。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-text</span>=<span class="value">"message"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>这里是一个div元素，有一个带有值为<code>message</code>的<code>v-text</code>指令。它所做的事是告诉Vue.js这个div的文本内容需要和Vue实例中的<code>message</code>属性保持同步。</p>
+<p>指令可以减少随意的Dom操作。例如<code>v-attr</code>操作元素属性，<code>v-repeat</code>基于数组克隆元素，<code>v-on</code>绑定事件监听。。。我们将在稍后解释它。</p>
+<h3 id="Mustache_Bindings">Mustache Bindings</h3>
+<p>你也可以使用mustache风格的绑定，在文本中和在属性中都可以。他们将会在钩子下转成<code>v-text</code>和<code>v-attr</code>指令。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"person-&#123;&#123;id&#125;&#125;"</span>&gt;</span>Hello &#123;&#123;name&#125;&#125;!<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>虽然它比较便利，这里有一些事情需要知道：</p>
+<p class="tip"><code>&lt;image&gt;</code>元素的<code>src</code>属性会在值被设置的时候会生成一个http请求，所以当模板第一次被解析的时候见会产生一个404。这种情况下优先使用<code>v-attr</code></p>
+
+<p class="tip">当解析HTML的时候IE 将会删除没作用的内部<code>style</code>属性，所以当你绑定内嵌的CSS的时候如果你想支持IE总是使用<code>v-style</code></p>
+
+<p>你可以使用三个大括号来表示非转义的HTML，实际上它转换成<code>v-html</code>了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">{&#123;&#123; safeHTMLString &#125;&#125;}</div></pre></td></tr></table></figure>
+
+<p>然而，这样可能导致潜在的XSS攻击，因此建议只有在你特别肯定数据源的安全的时候使用三个大括号，或者让它通过一个自定义的可以清楚不安全的html。</p>
+<p>最后，你可以增加<code>*</code>到你的大括号绑定来指示这是一个一次性的绑定，这种绑定对数据变化不做相应。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">{&#123;* onlyOnce &#125;}</div></pre></td></tr></table></figure>
+
+<h3 id="过滤器">过滤器</h3>
+<p>过滤器是更新View之前处理原始数据的函数，它们可以定义在指令和绑定内部：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span>&#123;&#123;message | capitalize&#125;&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>现在，在div的文字内容被更新之前，<code>message</code>的值将会首先通过<code>capitalize</code>函数，更多内容看<a href="/guide/filters.html">深入过滤器</a>.</p>
+<h3 id="组件">组件</h3>
+<p>In Vue.js, every component is simply a Vue instance. Components form a nested tree-like hierarchy that represents your application interface. They can be instantiated by a custom constructor returned from <code>Vue.extend</code>, but a more declarative approach is registering them with <code>Vue.component(id, constructor)</code>. Once registered, they can be declaratively nested in other Vue instance’s templates with the <code>v-component</code> directive:</p>
+<p>在vue.js，每个组件都是一个简单的Vue实例。组件形成的嵌套的树状继承结结构正好显示了你的程序接口。他们可以被从<code>Vue.extend</code>返回的自定义的构造函数实例化，但是更有说明性的方法是使用<code>Vue.component(id, constructoor</code>来注册他们，他们可以通过<code>v-compoent</code>指示器嵌套到别的Vue实例模板中。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"my-component"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- internals handled by my-component --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>这种简单的机制可以说性的重用，而且可以类似<a href="http://www.w3.org/TR/components-intro/" target="_blank" rel="external">Web 组件</a>来构造Vue实例，不需要最新的浏览器或者重型的填充。通过把一个程序分割层一些小的组件，结果是一个高度解耦和可管理的代码基。更多细节看<a href="/guide/components.html">组件系统</a></p>
+<h2 id="快速例子">快速例子</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>&#123;&#123;title | uppercase&#125;&#125;<span class="tag">&lt;/<span class="title">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">li</span></span></div><div class="line">      <span class="attribute">v-repeat</span>=<span class="value">"todos"</span></div><div class="line">      <span class="attribute">v-on</span>=<span class="value">"click: done = !done"</span></div><div class="line">      <span class="attribute">class</span>=<span class="value">"&#123;&#123;done ? 'done' : ''&#125;&#125;"</span>&gt;</div><div class="line">      &#123;&#123;content&#125;&#125;</div><div class="line">    <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> demo = <span class="keyword">new</span> Vue({</div><div class="line">  el: <span class="string">'#demo'</span>,</div><div class="line">  data: {</div><div class="line">    title: <span class="string">'todos'</span>,</div><div class="line">    todos: [</div><div class="line">      {</div><div class="line">        done: <span class="literal">true</span>,</div><div class="line">        content: <span class="string">'Learn JavaScript'</span></div><div class="line">      },</div><div class="line">      {</div><div class="line">        done: <span class="literal">false</span>,</div><div class="line">        content: <span class="string">'Learn Vue.js'</span></div><div class="line">      }</div><div class="line">    ]</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
+
+<p><strong>结果</strong></p>
+<p><div id="demo"><h1>&#123;&#123;title | uppercase&#125;&#125;</h1><ul><li v-repeat="todos" v-on="click: done = !done" class="&#123;&#123;done ? 'done' : ''&#125;&#125;">&#123;&#123;content&#125;&#125;</li></ul></div></p>
+<script>
+var demo = new Vue({
+  el: '#demo',
+  data: {
+    title: 'todos',
+    todos: [
+      {
+        done: true,
+        content: 'Learn JavaScript'
+      },
+      {
+        done: false,
+        content: 'Learn Vue.js'
+      }
+    ]
+  }
+})
+</script>
+
+<p>也可以在<a href="http://jsfiddle.net/yyx990803/yMv7y/" target="_blank" rel="external">jsfiddle</a>看。</p>
+<p>你可以点击一个Todo去触发，你也可以打开你的浏览器控制台，通过<code>demo</code>对象来玩一玩，比如修改<code>demo.title</code>，往<code>demo.todos</code>增加一个新的对象，或者触发一个todo的<code>done</code>状态。</p>
+<p>你可能在脑海中有一些问题了，不要担心，我们将会很快解释它。下一节<a href="/guide/directives.html">深入指示器</a></p>
+
+    <div class="footer">Caught a mistake or want to contribute to the documentation? <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!</div>
+</div>
+            
+        </div>
+
+        
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+    </body>
+</html>

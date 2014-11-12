@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>指示器 - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato|Inconsolata' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "api"
+        </script>
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/guide/" class="nav-link">入门</a></li>
+<li><a href="/api/" class="nav-link current">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+</div>
+        
+
+        <div id="main">
+            
+                
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li><a href="/guide/" class="nav-link">入门</a></li>
+<li><a href="/api/" class="nav-link current">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+    <div class="list">
+        <h2>Api</h2>
+        <ul class="menu-root">
+            
+                <li><a href="/api/index.html" class="sidebar-link">The Vue Constructor</a></li>
+            
+                <li><a href="/api/options.html" class="sidebar-link">Options</a></li>
+            
+                <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+            
+                <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
+            
+                <li><a href="/api/global-api.html" class="sidebar-link">Global API</a></li>
+            
+                <li><a href="/api/directives.html" class="sidebar-link current">指示器</a></li>
+            
+                <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+            
+            <li><a href="http://legacy.vuejs.org">Looking for 0.10 docs?</a></li>
+            <li style="margin:10px 0 3px">
+              <script data-gittip-username="yyx990803"
+                data-gittip-widget="button"
+                src="//gttp.co/v1.js"></script>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="content api with-sidebar">
+    <h1>指示器</h1>
+    <h2 id="反射指示器">反射指示器</h2>
+<blockquote>
+<p>这些指示器可以把它们自己绑定到Vue实例的一个属性上，或者绑定到一个实例上下文的一个表达式。当绑定的这个值改变，在下一帧到来时这些指示器的<code>update()</code>将会被调用。</p>
+</blockquote>
+<h3 id="v-text">v-text</h3>
+<p>更新元素的 <code>textContent</code>.</p>
+<p>在文本节点内部, &#123;&#123; Mustache &#125;&#125; 也会被当成一个 <code>v-text</code> 指示器</p>
+<h3 id="v-html">v-html</h3>
+<p>更新元素的 <code>innerHTML</code>.</p>
+<p class="tip"><code>v-html</code>和用户提供的数据结合使用是危险的。推荐只有在你能肯定数据源安全的情况下才使用<code>v-html</code>，或者给它加一个自定义的过滤器来消除一些潜在的危害。</p>
+
+<h3 id="v-show">v-show</h3>
+<ul>
+<li>这个指示器可以触发转变。</li>
+</ul>
+<p>设置元素的css显示属性为<code>none</code>或者它原本的值，取决于它绑定的值。</p>
+<h3 id="v-class">v-class</h3>
+<ul>
+<li>这个指示器接受一个可选的参数。</li>
+</ul>
+<p>如果没有参数，它将会把绑定的值加到元素的class列表，而且当值改变时更新这个class。</p>
+<p>如果提供了一个参数，这个参数将会根据绑定的值来决定class的值。和多子句结合是很有用的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">v-class</span>=<span class="value">"</span></span></div><div class="line">  red    : hasError,</div><div class="line">  bold   : isImportant,</div><div class="line">  hidden : isHidden</div><div class="line">"&gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="v-attr">v-attr</h3>
+<ul>
+<li>这个指示器需要一个参数</li>
+</ul>
+<p>更新元素给定的属性（根据指定的参数）。</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">v-attr</span>=<span class="value">"width:w, height:h"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>在内部，大括号插入的内容将会编译到计算过的<code>v-attr</code>指示器中。</p>
+<p class="tip">当设置<code>&lt;img&gt;</code>的<code>src</code>属性的时候你应该使用<code>v-attr</code>代替大括号绑定。你的模板在Vue.js编译之前被浏览器解析，所以当浏览器尝试获取一个图片的URL时大括号绑定将会导致一个404。</p>
+
+<h3 id="v-style">v-style</h3>
+<ul>
+<li>这个指示器接受一个可选参数。</li>
+</ul>
+<p>给元素应用内嵌的CSS样式。</p>
+<p>当没有元素的时候，Vue.js将会把值设置到<code>el.style.cssText</code>.</p>
+<p>当有参数的时候，它将会被当曾css属性使用。和多子句联合使用你可以在一起设置多个属性：</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-style</span>=<span class="value">"</span></span></div><div class="line">  top: top + 'px',</div><div class="line">  left: left + 'px',</div><div class="line">  background-color: 'rgb(0,0,' + bg + ')'</div><div class="line">"&gt;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>当这个参数有<code>$</code>前缀，Vue.js将会自动应用前一个版本的css规则，所以你不需要手动写所有的前缀。在下面的例子里Vue.js将会应用<code>transform</code>, <code>webkitTransform</code>, <code>mozTransform</code> and <code>msTransform</code>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-style</span>=<span class="value">"$transform: 'scale(' + scale + ')'"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p class="tip">因为IE不管版本在解析html的时候将会删除不起作用的样式所以推荐使用<code>v-style</code>而不是用大括号绑定到<code>style</code>中。</p>
+
+<h3 id="v-on">v-on</h3>
+<ul>
+<li>需要一个参数。</li>
+<li>需要值是一个函数或者一个表达式。</li>
+</ul>
+<p>在元素上绑定一个消息。消息类别取决于参数。这个是唯一的可以和<code>key</code>过滤器结合使用的指示器。 更多信息请看<a href="/guide/events.html">监听事件</a>.</p>
+<h3 id="v-model">v-model</h3>
+<ul>
+<li>这个指示器只能用在<code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> or <code>&lt;textarea&gt;</code> 这几个元素.</li>
+<li>参数: <code>lazy</code>, <code>number</code>, <code>options</code></li>
+</ul>
+<p>给表单的输入元素创建一个双向绑定。默认情况下数据在每个<code>input</code>消息中同步。例子的细节请看<a href="/guide/forms.html">处理表单</a>.</p>
+<h3 id="v-if">v-if</h3>
+<ul>
+<li>这个指示器可以触发转变。</li>
+</ul>
+<p>根据绑定的值有条件的插入或者删除一个元素。如果元素是<code>&lt;template&gt;</code>它的内容会作为一个条件块来提取。</p>
+<p><strong>例子:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">template</span> <span class="attribute">v-if</span>=<span class="value">"test"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">p</span>&gt;</span>world<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">template</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>将会渲染成:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--v-if-start--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>world<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--v-if-end--&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="v-repeat">v-repeat</h3>
+<ul>
+<li>创建一个子Vue实例。</li>
+<li>要求值是数组或者对象。</li>
+<li>可以触发转变。</li>
+<li>接受一个可选参数。</li>
+<li>指示器参数: <code>trackby</code></li>
+</ul>
+<p>为每一个绑定到数组的项创建一个子VM对象。当修改方法调用的时候这些子VM对象将会被自动的创建和删除，例如数组中调用<code>push()</code>。</p>
+<p>如果没有提供参数，这个子VM对象将会直接使用数组中的元素作为它的<code>$data</code>。如果这个值不是一个对象，一个包装的数据对象将会被创建而且将会把值设置到一个名为<code>$value</code>的属性上。</p>
+<p><strong>例子:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users"</span>&gt;</span></div><div class="line">    {&#123;name&#125;} {&#123;email&#125;}</div><div class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>如果提供一个参数，包装的数据对象也会创建，使用参数作为键的名字。这就可以在模板中访问更多的属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"user : users"</span>&gt;</span></div><div class="line">    {&#123;user.name&#125;} {&#123;user.email&#125;}</div><div class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>更细的例子请看：<a href="/guide/list.html">显示一个列表</a>.</p>
+<h3 id="v-with">v-with</h3>
+<ul>
+<li>只和<code>v-component</code>在一起使用。</li>
+<li>只接受单值，不接受表达式。</li>
+</ul>
+<p>允许子VM对象从父对象那里继承数据。你可以传递一个对象进去做为<code>data</code>，或者绑定父对象的一个属性。必须和<code>v-component</code>结合使用。</p>
+<p>The data inheritance is one-way: when parent property changes, the child will be notified of the change and update accordingly; however if the child sets the property to something else, it will not affect the parent, and the modified property will be overwritten the next time parent property changes.</p>
+<p>数据继承是一种方法：当父属性改变了，子对象将会收到修改通知然后做相应的更新；然而，如果子对象设置了这个值，将不会影响父元素，当下次父元素修改的时候这个修改的值又会被覆盖。</p>
+<p>继承对象的例子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// parent data looks like this</span></div><div class="line">{</div><div class="line">  user: {</div><div class="line">    name: <span class="string">'Foo Bar'</span>,</div><div class="line">    email: <span class="string">'foo@bar.com'</span></div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">my-component</span> <span class="attribute">v-with</span>=<span class="value">"user"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- you can access properties without `user.` --&gt;</span></div><div class="line">  {&#123;name&#125;} {&#123;email&#125;}</div><div class="line"><span class="tag">&lt;/<span class="title">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>继承独立属性的例子 (使用相同的数据):</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">my-component</span> <span class="attribute">v-with</span>=<span class="value">"myName: user.name, myEmail: user.email"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- you can access properties with the new keys --&gt;</span></div><div class="line">  {&#123;myName&#125;} {&#123;myEmail&#125;}</div><div class="line"><span class="tag">&lt;/<span class="title">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h2 id="字面量指示器">字面量指示器</h2>
+<blockquote>
+<p>字面量指示器把他们的属性值当成纯文本；他们不尝试去把它们绑定到任何元素上。它们所做的事情是使用这个字符串值执行<code>bind()</code>函数。字面量指示器在它值里面接受大括号表达式，但是这个表达式只是在第一次编译的时候执行，也不会对数据变化作出反应。</p>
+</blockquote>
+<h3 id="v-component">v-component</h3>
+<ul>
+<li>指示器参数: <code>keep-alive</code></li>
+</ul>
+<p>用注册的组件作为子VM对象编译这个元素。可以使用<code>v-with</code>从父对象继承数据。更多信息请看<a href="/guide/components.html">组件系统</a>.</p>
+<h3 id="v-ref">v-ref</h3>
+<p>在父对象上注册一个子对象的引用为了更方便的访问。只和<code>v-component</code>和<code>v-repeat</code>联合使用。组件实例将会被它的父元素使用<code>$</code>来访问，例子请看<a href="/guide/components.html#Child_Reference">子对象引用</a>.</p>
+<p>当和<code>v-repeat</code>一起使用，这个值将会是一个包含了所有对应的子VM实例的数组。</p>
+<h3 id="v-el">v-el</h3>
+<p>注册一个DOM元素的引用到它对应的Vue对象上，为了方面访问。例如<code>&lt;div v-el=&quot;hi&quot;&gt;</code> 将会用<code>vm.$$.hi</code>来访问这个元素。</p>
+<h3 id="v-partial">v-partial</h3>
+<p>使用注册的片段来替换元素的innerHTML。可以使用<code>Vue.partial()</code>来注册片段或者传入<code>partials</code>参数。</p>
+<p>在<code>v-partail</code>使用大括号可以使它反射：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- content will change based on vm.partialId --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-partial</span>=<span class="value">"{&#123;partialId&#125;}"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>你也可以这种语法（不支持反射）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span>&#123;&#123;&gt; my-partial&#125;&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<h3 id="v-transition">v-transition</h3>
+<p>通知Vue.js应用转化到元素上。这个转化类将在某些转换触发指示器修改元素或者Vue实例的DOM操作方法调用时应用。</p>
+<p>细节请看 <a href="/guide/transitions.html">转变指南</a>.</p>
+<h2 id="空指示器">空指示器</h2>
+<blockquote>
+<p>空指示器不要求也会忽略他们的属性值。</p>
+</blockquote>
+<h3 id="v-pre">v-pre</h3>
+<p>跳过这个元素以及子元素的编译。跳过大部分的没有指示器的节点可以提高编译速度。</p>
+<h3 id="v-cloak">v-cloak</h3>
+<p>这个属性一直保持到相关的VM对象完成编译。和一些CSS规则一起使用比如<code>[v-cloak] {display: none}</code>，这个指示器用来隐藏没有编译的大括号绑定直到VM准备好。</p>
+
+    <div class="footer">Caught a mistake or want to contribute to the documentation? <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!</div>
+</div>
+            
+        </div>
+
+        
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+    </body>
+</html>

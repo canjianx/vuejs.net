@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>构建大型程序 - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato|Inconsolata' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/guide/" class="nav-link current">入门</a></li>
+<li><a href="/api/" class="nav-link">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+</div>
+        
+
+        <div id="main">
+            
+                
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li><a href="/guide/" class="nav-link current">入门</a></li>
+<li><a href="/api/" class="nav-link">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+    <div class="list">
+        <h2>Guide</h2>
+        <ul class="menu-root">
+            
+                <li><a href="/guide/installation.html" class="sidebar-link">安装</a></li>
+            
+                <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
+            
+                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+            
+                <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
+            
+                <li><a href="/guide/list.html" class="sidebar-link">显示一个列表</a></li>
+            
+                <li><a href="/guide/events.html" class="sidebar-link">监听消息</a></li>
+            
+                <li><a href="/guide/forms.html" class="sidebar-link">处理表单</a></li>
+            
+                <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
+            
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+            
+                <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
+            
+                <li><a href="/guide/components.html" class="sidebar-link">组件系统</a></li>
+            
+                <li><a href="/guide/transitions.html" class="sidebar-link">转变</a></li>
+            
+                <li><a href="/guide/application.html" class="sidebar-link current">构建大型程序</a></li>
+            
+                <li><a href="/guide/extending.html" class="sidebar-link">扩展 Vue</a></li>
+            
+                <li><a href="/guide/faq.html" class="sidebar-link">普通的FAQS</a></li>
+            
+            <li><a href="http://legacy.vuejs.org">Looking for 0.10 docs?</a></li>
+            <li style="margin:10px 0 3px">
+              <script data-gittip-username="yyx990803"
+                data-gittip-widget="button"
+                src="//gttp.co/v1.js"></script>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="content guide with-sidebar">
+    <h1>构建大型程序</h1>
+    <p>Vue.js被设计的尽可能的灵活 - 它只是个接口库，并不能增强任何架构决定。做一个快速的原型它是非常有用，那些缺乏通过它构建大型的可伸缩的程序经验的人来说是个挑战。下面是一个个人的观点，关于怎样使用Vue.js组织一个大型的工程。</p>
+<h2 id="模块化">模块化</h2>
+<p>虽然独立编译的vue.js可以被当成全局变量来使用，但利用模块化构建系统来组织你的代码通常更好。做这件事推荐的方式是用CommonJS模块来写你的代码(在Node.js中使用的格式，vue.js中也用了这种方式)，然后使用<a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>或者<a href="http://webpack.github.io/" target="_blank" rel="external">Webpack</a>打包</p>
+<p>这里是在Github上的一些构建的例子：</p>
+<ul>
+<li><a href="https://github.com/vuejs/vue-browserify-example" target="_blank" rel="external">Vue + Browserify</a></li>
+<li><a href="https://github.com/vuejs/vue-webpack-example" target="_blank" rel="external">Vue + Webpack</a></li>
+</ul>
+<h2 id="单文件组件">单文件组件</h2>
+<p>在典型的vue.js工程中，我们把我们的代码分解到很多小的组件中，每个组件分装自己的css样式是很好的，模板和javascript定义在同一个地方。使用前面提到的构建工具的好处是他们都提供把代码合并到一起的机制，使用预处理我们可以像这样写我们的组件：</p>
+<p><img src="/images/vueify.png"></p>
+<p>如果你有预编译器，你可以这样：</p>
+<p><img src="/images/vueify_with_pre.png"></p>
+<p>这是为Browserify使用<a href="https://github.com/vuejs/vueify" target="_blank" rel="external">Vueify</a>达到的或者为Webpack通过<a href="https://github.com/vuejs/vue-loader" target="_blank" rel="external">Vue-loader</a>达到的。</p>
+<h2 id="路由">路由</h2>
+<p>You can implement some rudimentary routing logic by manually listening on hashchange and utilizing a dynamic <code>v-component</code>.</p>
+<p>你可以通过手动的监听哈希修改和使用动态<code>v-component</code>实现一些基本的路由逻辑。</p>
+<p><strong>例子:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"app"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"{&#123;currentView&#125;}"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'home'</span>, { <span class="comment">/* ... */</span> })</div><div class="line">Vue.component(<span class="string">'page1'</span>, { <span class="comment">/* ... */</span> })</div><div class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  data: {</div><div class="line">    currentView: <span class="string">'home'</span></div><div class="line">  }</div><div class="line">})</div><div class="line"><span class="comment">// Switching pages in your route handler:</span></div><div class="line">app.currentView = <span class="string">'page1'</span></div></pre></td></tr></table></figure>
+
+<p>使用这个机制使用独立的路由库如<a href="https://github.com/visionmedia/page.js" target="_blank" rel="external">Page.js</a>或者<a href="https://github.com/flatiron/director" target="_blank" rel="external">Director</a>是很容易的。</p>
+<h2 id="和服务器沟通">和服务器沟通</h2>
+<p>所有的Vue实例都可以直接使用<code>JSON.stringify()</code>串行化它们自己的<code>$data</code>。你可以使用任何你喜欢的ajax组件，例如<a href="https://github.com/visionmedia/superagent" target="_blank" rel="external">SuperAgent</a>。它也可以和无后端服务例如Firebase很好的配合使用。</p>
+<h2 id="单元测试">单元测试</h2>
+<p>兼容CommJS的构建系统的所有事情都是可以工作的。有一个推荐是使用<a href="http://karma-runner.github.io/0.12/index.html" target="_blank" rel="external">Karam</a>和<a href="https://github.com/karma-runner/karma-commonjs" target="_blank" rel="external">CommonJS pre-processor</a>来进行测试。</p>
+<p>The best practice is to export raw options / functions inside modules. Consider this example:</p>
+<p>最佳实践是导出模型里面的未处理的选项和函数。考虑这个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// my-component.js</span></div><div class="line"><span class="built_in">module</span>.exports = {</div><div class="line">  created: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">this</span>.message = <span class="string">'hello!'</span></div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>你可以在你整个模块中使用这个文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</div><div class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue({</div><div class="line">  el: <span class="string">'#app'</span>,</div><div class="line">  data: { <span class="comment">/* ... */</span> },</div><div class="line">  components: {</div><div class="line">    <span class="string">'my-component'</span>: <span class="built_in">require</span>(<span class="string">'./my-component'</span>)</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
+
+<p>你可以像这样测试这个模块：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Some Jasmine 2.0 tests</span></div><div class="line">describe(<span class="string">'my-component'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{  </div><div class="line">  <span class="comment">// require source module</span></div><div class="line">  <span class="keyword">var</span> myComponent = <span class="built_in">require</span>(<span class="string">'../src/my-component'</span>)</div><div class="line">  it(<span class="string">'should have a created hook'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    expect(<span class="keyword">typeof</span> myComponent.created).toBe(<span class="string">'function'</span>)</div><div class="line">  })</div><div class="line">  it(<span class="string">'should set correct default data'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    expect(<span class="keyword">typeof</span> myComponent.data).toBe(<span class="string">'function'</span>)</div><div class="line">    <span class="keyword">var</span> defaultData = myComponent.data()</div><div class="line">    expect(defaultData.message).toBe(<span class="string">'hello!'</span>)</div><div class="line">  })</div><div class="line">})</div></pre></td></tr></table></figure>
+
+<p class="tip">因为Vue.js绑定的更新是异步的，当判断数据修改之后Dom的更新你应该使用<code>Vue.nextTick()</code></p>
+
+<h2 id="一个例子">一个例子</h2>
+<p><a href="https://github.com/yyx990803/vue-hackernews" target="_blank" rel="external">Vue.js Hackernews Clone</a>是一个例子程序，它使用了Browserify + Vueify来组织代码，使用Director.js路由，还有HackerNews的官方Firebase API作为后端。它绝不是一个大的应用程序，但是上面讨论的这些概念它都使用了。</p>
+
+    <div class="footer">Caught a mistake or want to contribute to the documentation? <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!</div>
+</div>
+            
+        </div>
+
+        
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+    </body>
+</html>

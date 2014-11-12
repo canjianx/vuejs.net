@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>普通的FAQS - vue.js</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Lato|Inconsolata' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <script>
+            window.PAGE_TYPE = "guide"
+        </script>
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'vuejs.org');
+  ga('send', 'pageview');
+</script>
+        <script src="/js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="mobile-bar">
+            <a class="menu-button"></a>
+            <a class="logo" href="/"></a>
+        </div>
+        
+        
+            <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/guide/" class="nav-link current">入门</a></li>
+<li><a href="/api/" class="nav-link">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+</div>
+        
+
+        <div id="main">
+            
+                
+    <div class="sidebar">
+    <ul class="main-menu">
+        <li><a href="/guide/" class="nav-link current">入门</a></li>
+<li><a href="/api/" class="nav-link">API 参考</a></li>
+<li><a href="/examples/" class="nav-link">实例</a></li>
+<li><a href="/blog/" class="nav-link">博客</a></li>
+<li><a href="https://github.com/yyx990803/vue" target="_blank" class="nav-link">GitHub</a></li>
+    </ul>
+    <div class="list">
+        <h2>Guide</h2>
+        <ul class="menu-root">
+            
+                <li><a href="/guide/installation.html" class="sidebar-link">安装</a></li>
+            
+                <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
+            
+                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+            
+                <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
+            
+                <li><a href="/guide/list.html" class="sidebar-link">显示一个列表</a></li>
+            
+                <li><a href="/guide/events.html" class="sidebar-link">监听消息</a></li>
+            
+                <li><a href="/guide/forms.html" class="sidebar-link">处理表单</a></li>
+            
+                <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
+            
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+            
+                <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
+            
+                <li><a href="/guide/components.html" class="sidebar-link">组件系统</a></li>
+            
+                <li><a href="/guide/transitions.html" class="sidebar-link">转变</a></li>
+            
+                <li><a href="/guide/application.html" class="sidebar-link">构建大型程序</a></li>
+            
+                <li><a href="/guide/extending.html" class="sidebar-link">扩展 Vue</a></li>
+            
+                <li><a href="/guide/faq.html" class="sidebar-link current">普通的FAQS</a></li>
+            
+            <li><a href="http://legacy.vuejs.org">Looking for 0.10 docs?</a></li>
+            <li style="margin:10px 0 3px">
+              <script data-gittip-username="yyx990803"
+                data-gittip-widget="button"
+                src="//gttp.co/v1.js"></script>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="content guide with-sidebar">
+    <h1>普通的FAQS</h1>
+    <ul>
+<li><p><strong>为什么Vue.js不支持IE8?</strong></p>
+<p>Vue.js可以通过使用<code>Object.defineProperty</code>传递普通的Javascript对象而不需要脏检查，这个是一个ECMAScript5的特性。这种在IE8中只在DOM元素上工作，而没有办法为javascript对象来填充它。</p>
+</li>
+<li><p><strong>Vue.js修改了我的数据?</strong></p>
+<p>是也不是。Vue.js只是把不同的属性转换成getter和setter所以当这些属性被访问或者修改时可以得到通知。当序列化的时候，你的数据看上去是一模一样的。当然，有一些警告：</p>
+<ol>
+<li>当你<code>console.log</code>一个监控的对象，你可能只能看到一堆的getter/setters。然而你可以使用<code>vm.$log()</code>来记录更多的检查输出。</li>
+<li>你不能自己定义getter/setter到数据对象上。这也不是特别大的问题因为数据对象一般是在纯JSON和vue.js提供的计算属性中得到的。</li>
+<li>Vue.js增加了一些额外的属性和方法到监控的对象上：<code>__ob__</code>，<code>$add</code>和<code>$delete</code>。这些属性是不能被枚举的所以他们不会再<code>for ... in ...</code>循环中显示出来。然而如果你覆盖了它们将会宕掉。</li>
+</ol>
+<p>差不多就这样了。访问对象的属性和以前一样，<code>JSON.stringify</code>和<code>for ... in ...</code>循环将会像往常一样工作99.9%的时间你将不会想到它。</p>
+</li>
+<li><p><strong>现在Vue.js是个什么状态，我可以在产品中使用么?</strong></p>
+<p>Vue.js为0.11的更新已经经历了几次主要的重写，而且我们现在准备进行1.0的发布。Vue.js已经在类似Optimizely的公司使用了。</p>
+</li>
+<li><p><strong>Vue.js免费么?</strong></p>
+<p>Vue.js是免费而且在MIT的版权下开源的。</p>
+</li>
+<li><p><strong>Vue.js 和 AngularJS之间有什么不同?</strong></p>
+<p>这里有几个理由用vue.js代替Angular.js，虽然不是人人都这么认为:</p>
+<ol>
+<li>Vuew.js是更灵活，更少的选项的解决方案。它允许你按照自己的方式来架构你的程序，而不是所有事情都必须按照Angular的方式运行。它只是一个接口层，所以你可以把它当成一个页面中的一个轻量级的特性而非完全成熟的SPA。它给了你一个更大的空间去和其他的类库结合。这也许是最重要的差别。</li>
+<li>Vue.js比Angular简单的多，所以你可以在很快的时间内学到它所有的东西然后变得更有效率。</li>
+<li>Vue.js有更好的效率因为它没有脏检查。Angular在有很多个watchers之后就会变得慢，因为每次域中的任何一个改动，所有的watcher需要重新评估一次。Vue.js不需要这些，因为它使用了基于事件的监控机制，所以所有的改动独立触发除非有明确的依赖关系。</li>
+<li>Vue.js在指示器和组件之间有一个更清晰的界限。指示器只是来封装DOM操作，而组件是自己包含了视图和数据逻辑。在Angular中这两者有很多令人迷惑的地方。</li>
+</ol>
+<p>但是也注意一下Vue.js是一个相当年轻的工程，Angular已经是久经沙场考验的，google赞助的，而且有个很大的社区。</p>
+</li>
+<li><p><strong>Vue.js和KnockoutJS有什么不同呢?</strong></p>
+<p>首先，Vue在获取和设置属性的时候提供了清晰的语法。</p>
+<p>在更高的层次，Vue和Knockout的不同点在于Vue的组建系统鼓励你去先做一个自上而下的架构优先的，声明式设计策略，而不是从底部开始构建VM。在Vue中元数据是扁平的没有逻辑的对象（可以直接使用JSON.stringify而且塞到一个post中），而且VM只是简单的代理访问它上面的数据。一个Vue的VM对象总是连接对应的DOM元素的原始对象。在Knockout䬅，VM在本质是<strong>是</strong>数据，而且model和VM之间的线是很模糊的。这两者之间的区别缺乏让Knockout更灵活，但是也造成了更加复杂的VM对象。</p>
+</li>
+<li><p><strong>Vue.js和React.js的区别有哪些?</strong></p>
+<p>React.js和Vue.js在提供反射和可组合的组件的方面是一样的。但是内部实现是不同的。React是构建了一个虚拟DOM - 一个真实的Dom在内存映射。数据在React中很大程度上是不变的而且DOM的操作是通过不同点计算的。相反的在Vue.js中是多变的而且默认是有状态的，改变通过事件触发。而不是虚拟DOM，Vue.js使用真实的DOM作为模板，而且保存到实际节点的引用来进行数据绑定。</p>
+<p>虚拟DOM的方法提供了一个泛型的方法在任何事件描述你的视图，这个是很好的。因为它不需要监听和每次重绘整个app，视图和数据的同步是有绝对的保证的。它开辟了同构js程序的可能性。</p>
+<p>总之我是React设计理念的大粉丝。但是React有一个问题是你的逻辑和视图紧紧的交织在一起。对于一些开发者这是好处，但是对于设计者和开发者的混合者像我，有一个模板可以使可视的设计和CSS更容易。混合了javascript逻辑的JSX打破了这种我需要映射代码到设计的视图模型。对比之下，Vue.js付出了轻量级的DSL(指示器)的代价使我们有了可视的可伸缩的模板而且有封装进指示器和过滤器䬅的逻辑。</p>
+<p>React另外一个问题是DOM更新完全是放到虚拟DOM上的，当你真正<strong>想</strong>自己控制DOM就有点麻烦（虽然理论上你可以，但是当你这样做的时候本质上是和这个库产生了冲突）。对于那些需要复杂的精确的动画设计，这会变成一个相当麻烦的限制。在这里，Vue.js允许你有更多的灵活性而且这里有很多用了Vue.js的<a href="https://github.com/yyx990803/vue/wiki/Projects-Using-Vue.js#interactive-experiences" target="_blank" rel="external">网站 multiple FWA/Awwwards winning sites</a></p>
+</li>
+<li><p><strong>我想帮忙!</strong></p>
+<p>  好极了！阅读<a href="https://github.com/yyx990803/vue/blob/master/CONTRIBUTING.md" target="_blank" rel="external">贡献指南</a>而且加入在IRC上(#vuejs)讨论组</p>
+</li>
+</ul>
+
+    <div class="footer">Caught a mistake or want to contribute to the documentation? <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!</div>
+</div>
+            
+        </div>
+
+        
+            <script src="/js/smooth-scroll.min.js"></script>
+            <script src="/js/common.js"></script>
+        
+
+    </body>
+</html>
