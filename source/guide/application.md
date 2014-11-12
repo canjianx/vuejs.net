@@ -1,36 +1,38 @@
-title: Building Larger Apps
+title: 构建大型程序
 type: guide
 order: 13
 ---
 
-Vue.js is designed to be as flexible as possible - it's just an interface library that doesn't enforce any architectural decisions. While this can be very useful for rapid prototyping, it could be a challenge for those with less experience to build larger scale applications with it. The following is an opinionated perspective on how to organize larger projects when using Vue.js.
+Vue.js被设计的尽可能的灵活 - 它只是个接口库，并不能增强任何架构决定。做一个快速的原型它是非常有用，那些缺乏通过它构建大型的可伸缩的程序经验的人来说是个挑战。下面是一个个人的观点，关于怎样使用Vue.js组织一个大型的工程。
 
-## Modularization
+## 模块化
 
-Although the standalone build of Vue.js can be used as a global, it is often better to utilize a modularized build system to better organize your code. The recommended approach of doing so is by writing your source code in CommonJS modules (the format used by Node.js, and also the format used by Vue.js source code) and bundle them using [Browserify](http://browserify.org/) or [Webpack](http://webpack.github.io/).
+虽然独立编译的vue.js可以被当成全局变量来使用，但利用模块化构建系统来组织你的代码通常更好。做这件事推荐的方式是用CommonJS模块来写你的代码(在Node.js中使用的格式，vue.js中也用了这种方式)，然后使用[Browserify](http://browserify.org/)或者[Webpack](http://webpack.github.io/)打包
 
-Here are some build setup examples on GitHub:
+这里是在Github上的一些构建的例子：
 
 - [Vue + Browserify](https://github.com/vuejs/vue-browserify-example)
 - [Vue + Webpack](https://github.com/vuejs/vue-webpack-example)
 
-## Single File Components
+## 单文件组件
 
-In a typical Vue.js project we will be breaking up our code into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. A bonus for using the previously mentioned build tools is that they both provided mechanisms to transform the source code before bundling them together, and with a bit of pre-processing we can write our components like this:
+在典型的vue.js工程中，我们把我们的代码分解到很多小的组件中，每个组件分装自己的css样式是很好的，模板和javascript定义在同一个地方。使用前面提到的构建工具的好处是他们都提供把代码合并到一起的机制，使用预处理我们可以像这样写我们的组件：
 
 <img src="/images/vueify.png">
 
-If you are into pre-processors, you can even do this:
+如果你有预编译器，你可以这样：
 
 <img src="/images/vueify_with_pre.png">
 
-This is achieved via using the [Vueify](https://github.com/vuejs/vueify) transform for Browserify, or with [Vue-loader](https://github.com/vuejs/vue-loader) for Webpack.
+这是为Browserify使用[Vueify](https://github.com/vuejs/vueify)达到的或者为Webpack通过[Vue-loader](https://github.com/vuejs/vue-loader)达到的。
 
-## Routing
+## 路由
 
 You can implement some rudimentary routing logic by manually listening on hashchange and utilizing a dynamic `v-component`.
 
-**Example:**
+你可以通过手动的监听哈希修改和使用动态`v-component`实现一些基本的路由逻辑。
+
+**例子:**
 
 ``` html
 <div id="app">
@@ -51,17 +53,20 @@ var app = new Vue({
 app.currentView = 'page1'
 ```
 
-With this mechanism it's very easy to leverage standalone routing libraries such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director).
+使用这个机制使用独立的路由库如[Page.js](https://github.com/visionmedia/page.js)或者[Director](https://github.com/flatiron/director)是很容易的。
 
-## Communication with Server
+## 和服务器沟通
 
-All Vue instances can have their raw `$data` directly serialized with `JSON.stringify()` with no additional effort. You can use any Ajax component you like, for example [SuperAgent](https://github.com/visionmedia/superagent). It also plays nicely with no-backend services such as Firebase.
 
-## Unit Testing
+所有的Vue实例都可以直接使用`JSON.stringify()`串行化它们自己的`$data`。你可以使用任何你喜欢的ajax组件，例如[SuperAgent](https://github.com/visionmedia/superagent)。它也可以和无后端服务例如Firebase很好的配合使用。
 
-Anything compatible with a CommonJS-based build system works. A recommendation is using the [Karma](http://karma-runner.github.io/0.12/index.html) test runner together with is [CommonJS pre-processor](https://github.com/karma-runner/karma-commonjs) to test your code modually.
+## 单元测试
+
+兼容CommJS的构建系统的所有事情都是可以工作的。有一个推荐是使用[Karam](http://karma-runner.github.io/0.12/index.html)和[CommonJS pre-processor](https://github.com/karma-runner/karma-commonjs)来进行测试。
 
 The best practice is to export raw options / functions inside modules. Consider this example:
+
+最佳实践是导出模型里面的未处理的选项和函数。考虑这个例子：
 
 ``` js
 // my-component.js
@@ -72,7 +77,7 @@ module.exports = {
 }
 ```
 
-You can use that file in your entry module like this:
+你可以在你整个模块中使用这个文件：
 
 ``` js
 // main.js
@@ -86,7 +91,7 @@ var app = new Vue({
 })
 ```
 
-And you can test that module like this:
+你可以像这样测试这个模块：
 
 ``` js
 // Some Jasmine 2.0 tests
@@ -104,8 +109,8 @@ describe('my-component', function () {
 })
 ```
 
-<p class="tip">Since Vue.js bindings update asynchronously, you should use `Vue.nextTick()` when asserting DOM updates after changing the data.</p>
+<p class="tip">因为Vue.js绑定的更新是异步的，当判断数据修改之后Dom的更新你应该使用`Vue.nextTick()`</p>
 
-## An Example
+## 一个例子
 
-The [Vue.js Hackernews Clone](https://github.com/yyx990803/vue-hackernews) is an example application that uses Browserify + Vueify for code organization, Director.js for routing, and HackerNews' official Firebase API as the backend. It's by no means a big application, but it demonstrates the combined usage of the concepts discussed on this page.
+[Vue.js Hackernews Clone](https://github.com/yyx990803/vue-hackernews)是一个例子程序，它使用了Browserify + Vueify来组织代码，使用Director.js路由，还有HackerNews的官方Firebase API作为后端。它绝不是一个大的应用程序，但是上面讨论的这些概念它都使用了。

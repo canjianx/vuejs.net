@@ -1,11 +1,11 @@
-title: Component System
+title: 组件系统
 type: guide
 order: 11
 ---
 
-## Using Components
+## 使用组件
 
-Vue.js allows you to treat extended Vue subclasses as reusable components that are conceptually similar to [Web Components](http://www.w3.org/TR/components-intro/), without requiring any polyfills. To create a component, just create a subclass constructor of Vue using `Vue.extend()`:
+Vue.js允许你把扩展的Vue子类当曾一个可重用的组件，概念上和[web组件](http://www.w3.org/TR/components-intro/)一样，但是不需要任何填充。为了创建一个组件，只需要使用`Vue.extend()`来创建一个子类的构造函数。
 
 ``` js
 // Extend Vue to get a reusable constructor
@@ -14,7 +14,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Most of the options that can be passed into the Vue constructor can be used in `Vue.extend()`, however, there are two special cases, `data` and `el`. Since each Vue instance should have its own `$data` and `$el`, we obviously don't want the value we passed into `Vue.extend()` to be shared across all instances created from that constrcutor. So when you want to define how a component should initalize its default data or element, you should pass in a function instead:
+大部分的Vue的构造函数的参数都能在`Vue.extend()`中使用，但是有两个特例，`data`和`el`。因为每个Vue实例都有自己的`$data`和`$el`，我们当然不希望传递进`Vue.extend()`的值共享给所有的实例。所以当你想定义一个组件应该怎样初始化它的数据和元素时，你应该传递一个函数来代替：
 
 ``` js
 var ComponentWithDefaultData = Vue.extend({
@@ -26,14 +26,14 @@ var ComponentWithDefaultData = Vue.extend({
 })
 ```
 
-Then, you can **register** that constructor with `Vue.component()`:
+这时，你可以通过`Vue.component()`来**注册**构造函数。
 
 ``` js
 // Register the constructor with id: my-component
 Vue.component('my-component', MyComponent)
 ```
 
-To make things easier, you can also directly pass in the option object instead of an actual constructor. `Vue.component()` will implicitly call `Vue.extend()` for you if it receives an object:
+为了使事情更容易，你可以直接传递一个选项对象而不是一个实际的构造函数。`Vue.component()`将会当你接收到一个对象的时候隐含的为你调用`Vue.extend()`。
 
 ``` js
 // Note: this method returns the global Vue,
@@ -43,28 +43,28 @@ Vue.component('my-component', {
 })
 ```
 
-Then you can use the registered component in a parent instance's template (make sure the component is registered **before** you instantiate your root Vue instance):
+这样你可以在父实例的模板中使用一个注册的component(确保这个组件在你的根实例**之前**注册)
 
 ``` html
 <!-- inside parent template -->
 <div v-component="my-component"></div>
 ```
 
-If you prefer, components can also be used in the form of a custom element tag:
+如果你喜欢，组件也可以使用自定义标签的方式：
 
 ``` html
 <my-component></my-component>
 ```
 
-<p class="tip">To avoid naming collisions with native elements and stay consistent with the W3C Custom Elements specification, the component's ID **must** contain a hyphen `-` to be usable as a custom tag.</p>
+<p class="tip">为了避免和本来的元素的名字冲突，保留了W3C自定义元素规格书里的做法，组件的ID**必须**包含一个连字符`-`</p>
 
-It is important to understand the difference between `Vue.extend()` and `Vue.component()`. Since `Vue` itself is a constructor, `Vue.extend()` is a **class inheritance method**. Its task is to create a sub-class of `Vue` and return the constructor. `Vue.component()`, on the other hand, is an **asset registration method** similar to `Vue.directive()` and `Vue.filter()`. Its task is to associate a given constructor with a string ID so Vue.js can pick it up in templates. When directly passing in options to `Vue.component()`, it calls `Vue.extend()` under the hood.
+理解`Vue.extend()`和`Vue.component()`之间的不同是很重要的。因为`Vue`本身是个构造函数，`Vue.extend()`是一个**类继承方法**。它的任务是穿件一个`Vue`的子类然后返回它的构造函数。`Vue.component()`，另一方面来说，是一个**内容注册函数**和`Vue.directive()`还有`Vue.filter()`类似。它的任务是关联字符串ID到一个给定的构造函数。所以Vue.js可以从模板中获取它。当直接传递一个选项给`Vue.component()`，它在内部调用`Vue.extend()`。
 
-Vue.js supports two different API paradigms: the class-based, imperative, Backbone style API, and the markup-based, declarative, Web Components style API. If you are confused, think about how you can create an image element with `new Image()`, or with an `<img>` tag. Each is useful in its own right and Vue.js provides both for maximum flexibility.
+Vue.js支持两种不同的API范例：基于类的，命令式的，Backbone风格的API，还有基于标记的，说明的，web 组件风格的API。如果你有迷惑的地方，想想怎么通过`new Image()`或者`<img>`标签创建一个图像元素。两种都是有用的，Vue为了最大的灵活性也提供了两种方式。
 
-## Dynamic Components
+## 动态组件
 
-You can dynamically switch between components by using Mustache tags inside the `v-component` direcitve, which can be used together with routers to achieve "page switching":
+你可以通过在`v-compoent`指示器内部使用大括号标签动态的在组件间切换，可以和路由器使用在一起用来做"页面切换":
 
 ``` js
 new Vue({
@@ -86,7 +86,7 @@ new Vue({
 </div>
 ```
 
-If you want to keep the switched-out components alive so that you can preserve its state or avoid re-rendering, you can add a `keep-alive` directive param:
+如果你想保持切换掉的组件保持活动，你可以保存它的状态避免它重渲染，你可以增加一个`keep-alive`的指示器参数：
 
 ``` html
 <div v-component="{&#123;currentView&#125;}" keep-alive>
@@ -94,9 +94,9 @@ If you want to keep the switched-out components alive so that you can preserve i
 </div>
 ```
 
-## Component Lifecycle
+## 组件的生命周期
 
-Every component, or Vue instance, has its own lifecycle: it will be created, compiled, inserted or detached, and finally destroyed. At each of these key moments the instance will emit corresponding events, and when creating an instance or defining a component, we can pass in lifecycle hook functions to react to these events. For example:
+每个组件或者Vue对象，都有他们的生命周期：他们将会被创建，编译，插入，分解，最终销毁。实例的每个关键的时刻都会有相应的消息触发，当创建一个实例或者定义一个组件，你可以传递一个生命周期钩子函数用来接收这些消息。例如：
 
 ``` js
 var MyComponent = Vue.extend({
@@ -106,13 +106,13 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Check out the API reference for a [full list of lifecycle hooks](/api/options.html#Lifecycle) that are availble.
+[完整的生命周期钩子](/api/options.html#Lifecycle)请查看这里
 
-## Data Inheritance
+## 数据层
 
-### Scope Inheritance
+### 域继承
 
-By default, components have **isolated scope**. This means you cannot reference parent data in a child component's template. If you want though, you can use the `inherit: true` option for your child component to make it prototypally inherit parent properties:
+默认情况下，组件有个**绝对域**。这就意味着你不能再子组件的模板里引用父数据。如果你想穿过去，你需要在你的子组件中使用`inherit: true`选项让他可以继承父数据属性：
 
 ``` js
 var parent = new Vue({
@@ -134,7 +134,7 @@ parent.a = 3
 console.log(child.a) // -> 3
 ```
 
-Note this comes with a caveat: because data properties on Vue instances are getter/setters, setting `child.a = 2` will change `parent.a` instead of creating a new property on the child shadowing the parent one:
+这里有个警告：因为在Vue实例的数据属性是getter/setter，设置`child.a = 2`将会修改`parent.a`而不是创建一个新的子属性。
 
 ``` js
 child.a = 4
@@ -142,11 +142,11 @@ console.log(parent.a) // -> 4
 console.log(child.hasOwnProperty('a')) // -> false
 ```
 
-### Explicit Data Passing
+### 明确的数据传递
 
-To explicitly pass data to child components with isolated scope, we can use the `v-with` directive. When given a single keypath without an argument, the corresponding value on the parent will be passed down to the child as its `$data`. This means the passed-down value must be an object, and it will overwrite the default `$data` object the child component might have.
+通过绝度域明确的传递数据到子组件，我们可以使用`v-with`指示器。当给了一个单独的不带参数的keypath，对应的父数据中的值会被传递到子组件中，作为它的`$data`。这就意味着传递下来的数据必须是一个对象，它将会覆盖子组件中可能有的默认的`$data`对象。
 
-**Example:**
+**例子:**
 
 ``` html
 <div id="demo-1">
@@ -172,7 +172,7 @@ var parent = new Vue({
 })
 ```
 
-**Result:**
+**结果:**
 
 <div id="demo-1" class="demo"><p v-component="user-profile" v-with="user"></p></div>
 <script>
@@ -190,9 +190,9 @@ var parent = new Vue({
   })
 </script>
 
-`v-with` can also be used with an argument in the form of `v-with="childProp: parentProp"`. This means passing down `parent[parentProp]` to the child as `child[childProp]`. Note this data inheritance is one-way: when `parentProp` changes, `childProp` will be updated accordingly, however not the other way around.
+`v-with`可以以`v-with="childProp:parentProp"的形式`带一个参数使用。这意味着把`parent[parentProp]`传递到了`child[childPrp]`。注意这种数据继承是单向的：当`parentProp`改变了，`childProp`将会被相应的更新，但是反之不亦然。
 
-**Example:**
+**例子:**
 
 ``` html
 <div id="parent">
@@ -217,7 +217,7 @@ new Vue({
 })
 ```
 
-**Result:**
+**结果:**
 
 <div id="parent" class="demo"><input v-model="parentMsg"><p v-component="child" v-with="childMsg:parentMsg"></p></div>
 <script>
@@ -234,9 +234,9 @@ new Vue({
 })
 </script>
 
-## Components and `v-repeat`
+## 组件和`v-repeat`
 
-For an Array of Objects, you can combine `v-component` with `v-repeat`. In this case, for each Object in the Array, a child ViewModel will be created using that Object as data, and the specified component as the constructor.
+对于对象中的数组，你可以把`v-repeat`和`v-compoent`合并使用。在这种情况下，数组中的每个对象，一个子VM对象将会使用这个对象作为数据而创建，然后指定组件作为构造函数。
 
 ``` html
 <ul id="demo-2">
@@ -263,7 +263,7 @@ var parent2 = new Vue({
 })
 ```
 
-**Result:**
+**结果:**
 
 <ul id="demo-2" class="demo"><li v-repeat="users" v-component="user-profile"></li></ul>
 <script>
@@ -284,9 +284,9 @@ var parent2 = new Vue({
 })
 </script>
 
-## Child Reference
+## 子引用
 
-Sometimes you might need to access nested child components in JavaScript. To enable that you have to assign a reference ID to the child component using `v-ref`. For example:
+有些是有你需要在javascript中嵌套的访问子组件。要想这样你必须通过`v-ref`访问一个子组件的一个引用id。例如：
 
 ``` html
 <div id="parent">
@@ -300,11 +300,11 @@ var parent = new Vue({ el: '#parent' })
 var child = parent.$.profile
 ```
 
-When `v-ref` is used together with `v-repeat`, the value you get will be an Array containing the child components mirroring the data Array.
+当`v-ref`和`v-repeat`一起使用，你得到的值将会是一个包含了镜像到数据数组的子组件数组。
 
-## Event System
+## 事件系统
 
-Although you can directly access a ViewModels children and parent, it is more convenient to use the built-in event system for cross-component communication. It also makes your code less coupled and easier to maintain. Once a parent-child relationship is established, you can dispatch and trigger events using each ViewModel's [event instance methods](/api/instance-methods.html#Events).
+虽然你能直接访问Vm子和父，但是使用内建的事件系统来跨组件沟通更便捷。它还可以让你的代码更简单和便于管理。一旦一个父子关系确定，你可以使用每个VM的[事件实例方法](/api/instance-methods.html#Events)分派和触发事件。
 
 ``` js
 var Child = Vue.extend({
@@ -349,9 +349,9 @@ var parent = new Vue({
 })
 </script>
 
-## Private Assets
+## 私有内容
 
-Sometimes a component needs to use assets such as directives, filters and its own child components, but might want to keep these assets encapsulated so the component itself can be reused elsewhere. You can do that using the private assets instantiation options. Private assets will only be accessible by the instances of the owner component and its child components.
+有些时候一个组件需要使用一些内容，比如指示器，过滤器，或者它自己的子组件，但是希望保持他们的封装性一遍组件自己在其他地方也可以使用。你可以通过私有内容实例化选项。私有内容只能被所属的组件和它的子组件访问。
 
 ``` js
 // All 5 types of assets
@@ -377,7 +377,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-Alternatively, you can add private assets to an existing Component constructor using a chaining API similar to the global asset registration methods:
+可选择的你可以增加私有属性到一个现存的组件构造函数，使用和全局内容注册方法一样的链式API：
 
 ``` js
 MyComponent
@@ -387,22 +387,22 @@ MyComponent
   // ...
 ```
 
-## Content Insertion
+## 内容插入
 
-When creating reusable components, we often need to access and reuse the original content in the hosting element, which are not part of the component (similar to the Angular concept of "transclusion".) Vue.js implements a content insertion mechanism that is compatible with the current Web Components spec draft, using the special `<content>` element to serve as insertion points for the original content.
+当创建一个可重用的组件的时候，我们经常需要访问和重用宿主元素中的原始内容，它们不是组件的一部分（和Angular中的"transclusion"一样）Vue.js实现了一个内容插入机制，可以兼容现在Web组件草案，使用一个特殊的`<content>`元素来为原始的内容提供一个插入点。
 
-### Single Insertion Point
+### 单独的插入点
 
-When there is only one `<content>` tag with no attributes, the entire original content will be inserted at its position in the DOM and replaces it. Anything originally inside the `<content>` tags is considered **fallback content**. Fallback content will only be displayed if the hosting element is empty and has no content to be inserted. For example:
+当这里只有一个`<content>`标签并且没有属性，整个原始内同建辉插入到这里。所有插入到`<content>`标签中的内容被认为是**备用内容**。如果宿主元素是空的而且没有内容被插入备用内容将会被显示。例如：
 
-Template for `my-component`:
+`my-component`的模板:
 
 ``` html
 <h1>This is my component!</h1>
 <content>This will only be displayed if no content is inserted</content>
 ```
 
-Parent markup that uses the component:
+父元素标记使用这个模板:
 
 ``` html
 <div v-component="my-component">
@@ -411,7 +411,7 @@ Parent markup that uses the component:
 </div>
 ```
 
-The rendered result will be:
+渲染结果是:
 
 ``` html
 <div>
@@ -421,11 +421,11 @@ The rendered result will be:
 </div>
 ```
 
-### Multiple Insertion Points
+### 多插入点
 
-`<content>` elements have a special attribute, `select`, which expects a CSS selector. You can have multiple `<content>` insertion points with different `select` attributes, and each of them will be replaced by the elements matching that selector from the original content.
+`<content>`元素有一个特殊的属性`select`，它需要一个css选择器。你可以使用不同的`select`属性有多个`<content>`插入点，每一个将会被匹配那个选择器的元素替换。
 
-Template for `multi-insertion-component`:
+`multi-insertion-component`的模板:
 
 ``` html
 <content select="p:nth-child(3)"></content>
@@ -433,7 +433,7 @@ Template for `multi-insertion-component`:
 <content select="p:nth-child(1)"></content>
 ```
 
-Parent markup:
+父元素:
 
 ``` html
 <div v-component="multi-insertion-component">
@@ -443,7 +443,7 @@ Parent markup:
 </div>
 ```
 
-The rendered result will be:
+渲染结果:
 
 ``` html
 <div>
@@ -453,6 +453,6 @@ The rendered result will be:
 </div>
 ```
 
-The content insertion mechanism provides fine control over how original content should be manipulated or displayed, making components extremely flexible and composable.
+内容插入机制对怎样管理和显示原始内容提供了一个良好的控制，使组件有更大的灵活性和可组合型。
 
-Next: [Applying Transition Effects](/guide/transitions.html).
+接下来 [应用转变效果](/guide/transitions.html).

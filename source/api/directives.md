@@ -1,37 +1,37 @@
-title: Directives
+title: 指示器
 type: api
 order: 6
 ---
 
-## Reactive Directives
+## 反射指示器
 
-> These directives can bind themselves to a property on the Vue instance, or to an expression which is evaluated in the context of the instance. When the value of the underlying property or expression changes, the `update()` function of these directives will be called asynchronously on next tick.
+> 这些指示器可以把它们自己绑定到Vue实例的一个属性上，或者绑定到一个实例上下文的一个表达式。当绑定的这个值改变，在下一帧到来时这些指示器的`update()`将会被调用。
 
 ### v-text
 
-Updates the element's `textContent`.
+更新元素的 `textContent`.
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations are also compiled as a `v-text` direcitve on a textNode.
+在文本节点内部, &#123;&#123; Mustache &#125;&#125; 也会被当成一个 `v-text` 指示器
 
 ### v-html
 
-Updates the element's `innerHTML`.
+更新元素的 `innerHTML`.
 
-<p class="tip">Using `v-html` with user-supplied data can be dangerous. It is suggested that you only use `v-html` when you are absolutely sure about the security of the data source, or pipe it through a custom filter that sanitizes untrusted HTML.</p>
+<p class="tip">`v-html`和用户提供的数据结合使用是危险的。推荐只有在你能肯定数据源安全的情况下才使用`v-html`，或者给它加一个自定义的过滤器来消除一些潜在的危害。</p>
 
 ### v-show
 
-- This directive can trigger transitions.
+- 这个指示器可以触发转变。
 
-Set the element's display to `none` or its original value, depending on the truthy-ness of the binding's value.
+设置元素的css显示属性为`none`或者它原本的值，取决于它绑定的值。
 
 ### v-class
 
-- This directive accepts an optional argument.
+- 这个指示器接受一个可选的参数。
 
-If no argument is provided, it will add the binding's value to the element's classList, and update the class as the value changes.
+如果没有参数，它将会把绑定的值加到元素的class列表，而且当值改变时更新这个class。
 
-If a directive argument is provided, the argument will be the class to be toggled depending on the binding value's truthy-ness. Combined with multiple clauses this can be pretty useful:
+如果提供了一个参数，这个参数将会根据绑定的值来决定class的值。和多子句结合是很有用的：
 
 ``` html
 <span v-class="
@@ -43,9 +43,9 @@ If a directive argument is provided, the argument will be the class to be toggle
 
 ### v-attr
 
-- This directive requires an argument.
+- 这个指示器需要一个参数
 
-Updates the element's given attribute (indicated by the argument).
+更新元素给定的属性（根据指定的参数）。
 
 **Example:**
 
@@ -53,19 +53,19 @@ Updates the element's given attribute (indicated by the argument).
 <canvas v-attr="width:w, height:h"></canvas>
 ```
 
-Internally, &#123;&#123; Mustache &#125;&#125; interpolations inside attributes are compiled into computed `v-attr` directives.
+在内部，大括号插入的内容将会编译到计算过的`v-attr`指示器中。
 
-<p class="tip">You should use `v-attr` instead of mustache binding when setting the `src` attribute on `<img>` elements. Your templates are parsed by the browser before being compiled by Vue.js, so the mustache binding will cause a 404 when the browser tries to fetch it as the image's URL.</p>
+<p class="tip">当设置`<img>`的`src`属性的时候你应该使用`v-attr`代替大括号绑定。你的模板在Vue.js编译之前被浏览器解析，所以当浏览器尝试获取一个图片的URL时大括号绑定将会导致一个404。</p>
 
 ### v-style
 
-- This directive accepts an optional argument.
+- 这个指示器接受一个可选参数。
 
-Apply inline CSS styles to the element.
+给元素应用内嵌的CSS样式。
 
-When there is no argument, Vue.js will use the value to set `el.style.cssText`.
+当没有元素的时候，Vue.js将会把值设置到`el.style.cssText`.
 
-When there is an argument, it will be used as the CSS property to apply. Combined with multiple clauses you can set multiple properties together:
+当有参数的时候，它将会被当曾css属性使用。和多子句联合使用你可以在一起设置多个属性：
 
 **Example:**
 
@@ -77,35 +77,35 @@ When there is an argument, it will be used as the CSS property to apply. Combine
 "></div>
 ```
 
-When the argument is prefixed with `$`, Vue.js will automatically apply prefixed version of the CSS rule too, so you don't have to manually write all the prefixes inline. In the following example Vue.js will apply `transform`, `webkitTransform`, `mozTransform` and `msTransform`:
+当这个参数有`$`前缀，Vue.js将会自动应用前一个版本的css规则，所以你不需要手动写所有的前缀。在下面的例子里Vue.js将会应用`transform`, `webkitTransform`, `mozTransform` and `msTransform`：
 
 ``` html
 <div v-style="$transform: 'scale(' + scale + ')'"></div>
 ```
 
-<p class="tip">It is recommended to use `v-style` instead of mustache bindings inside `style` attribute because Internet Explorer, regardless of version, will remove invalid inline styles when parsing the HTML.</p>
+<p class="tip">因为IE不管版本在解析html的时候将会删除不起作用的样式所以推荐使用`v-style`而不是用大括号绑定到`style`中。</p>
 
 ### v-on
 
-- This directive requires an argument.
-- This directive requires the value to be a Function or a statement.
+- 需要一个参数。
+- 需要值是一个函数或者一个表达式。
 
-Attaches an event listener to the element. The event type is denoted by the argument. It is also the only directive that can be used with the `key` filter. For more details see [Listening for Events](/guide/events.html).
+在元素上绑定一个消息。消息类别取决于参数。这个是唯一的可以和`key`过滤器结合使用的指示器。 更多信息请看[监听事件](/guide/events.html).
 
 ### v-model
 
-- This directive can only be used on `<input>`, `<select>` or `<textarea>` elements.
-- Directive params: `lazy`, `number`, `options`
+- 这个指示器只能用在`<input>`, `<select>` or `<textarea>` 这几个元素.
+- 参数: `lazy`, `number`, `options`
 
-Create a two-way binding on a form input element. Data is synced on every `input` event by default. For detailed examples see [Handling Forms](/guide/forms.html).
+给表单的输入元素创建一个双向绑定。默认情况下数据在每个`input`消息中同步。例子的细节请看[处理表单](/guide/forms.html).
 
 ### v-if
 
-- This directive can trigger transitions.
+- 这个指示器可以触发转变。
 
-Conditionally insert / remove the element based on the truthy-ness of the binding value. If the element is a `<template>` element, its content will be extracted as the conditional block.
+根据绑定的值有条件的插入或者删除一个元素。如果元素是`<template>`它的内容会作为一个条件块来提取。
 
-**Example:**
+**例子:**
 
 ``` html
 <template v-if="test">
@@ -114,7 +114,7 @@ Conditionally insert / remove the element based on the truthy-ness of the bindin
 </template>
 ```
 
-Will render:
+将会渲染成:
 
 ``` html
 <!--v-if-start-->
@@ -125,17 +125,17 @@ Will render:
 
 ### v-repeat
 
-- This directive creates child Vue instances.
-- This directive requires the value to be an Array or Object.
-- This directive can trigger transitions.
-- This directive accepts an optional argument.
-- Directive params: `trackby`
+- 创建一个子Vue实例。
+- 要求值是数组或者对象。
+- 可以触发转变。
+- 接受一个可选参数。
+- 指示器参数: `trackby`
 
-Create a child ViewModel for every item in the binding Array. These child ViewModels will be automatically created / destroyed when mutating methods, e.g. `push()`, are called on the Array.
+为每一个绑定到数组的项创建一个子VM对象。当修改方法调用的时候这些子VM对象将会被自动的创建和删除，例如数组中调用`push()`。
 
-When no argument is provided, the child ViewModel will directly use the assigned element in the Array as its `$data`. If the value is not an object, a wrapper data object will be created and the value will be set on that object using the alias key `$value`.
+如果没有提供参数，这个子VM对象将会直接使用数组中的元素作为它的`$data`。如果这个值不是一个对象，一个包装的数据对象将会被创建而且将会把值设置到一个名为`$value`的属性上。
 
-**Example:**
+**例子:**
 
 ``` html
 <ul>
@@ -145,7 +145,7 @@ When no argument is provided, the child ViewModel will directly use the assigned
 </ul>
 ```
 
-If an argument is provided, a wrapper data object will always be created, using the argument string as the alias key. This allows for more explicit property access in templates:
+如果提供一个参数，包装的数据对象也会创建，使用参数作为键的名字。这就可以在模板中访问更多的属性。
 
 ``` html
 <ul>
@@ -155,18 +155,20 @@ If an argument is provided, a wrapper data object will always be created, using 
 </ul>
 ```
 
-For detailed examples, see [Displaying a List](/guide/list.html).
+更细的例子请看：[显示一个列表](/guide/list.html).
 
 ### v-with
 
-- This directive can only be used with `v-component`.
-- This directive accepts only keypaths, no expressions.
+- 只和`v-component`在一起使用。
+- 只接受单值，不接受表达式。
 
-Allows a child ViewModel to inherit data from the parents. You can either pass in an Object which will be used as the `data` option, or bind individual parent properties to the child with different keys. This directive must be used in combination with `v-component`.
+允许子VM对象从父对象那里继承数据。你可以传递一个对象进去做为`data`，或者绑定父对象的一个属性。必须和`v-component`结合使用。
 
 The data inheritance is one-way: when parent property changes, the child will be notified of the change and update accordingly; however if the child sets the property to something else, it will not affect the parent, and the modified property will be overwritten the next time parent property changes.
 
-Example inheriting an object:
+数据继承是一种方法：当父属性改变了，子对象将会收到修改通知然后做相应的更新；然而，如果子对象设置了这个值，将不会影响父元素，当下次父元素修改的时候这个修改的值又会被覆盖。
+
+继承对象的例子:
 
 ``` js
 // parent data looks like this
@@ -185,7 +187,7 @@ Example inheriting an object:
 </my-component>
 ```
 
-Example inheriting individual properties (using the same data):
+继承独立属性的例子 (使用相同的数据):
 
 ``` 
 <my-component v-with="myName: user.name, myEmail: user.email">
@@ -194,38 +196,38 @@ Example inheriting individual properties (using the same data):
 </my-component>
 ```
 
-## Literal Directives
+## 字面量指示器
 
-> Literal directives treat their attribute value as a plain string; they do not attempt to bind themselves to anything. All they do is executing the `bind()` function with the string value once. Literal directives accept mustache expressions inside their value, but these expressions will be evaluated only once on first compile and do not react to data changes.
+> 字面量指示器把他们的属性值当成纯文本；他们不尝试去把它们绑定到任何元素上。它们所做的事情是使用这个字符串值执行`bind()`函数。字面量指示器在它值里面接受大括号表达式，但是这个表达式只是在第一次编译的时候执行，也不会对数据变化作出反应。
 
 ### v-component
 
-- Directive params: `keep-alive`
+- 指示器参数: `keep-alive`
 
-Compile this element as a child ViewModel with a registered component constructor. This can be used with `v-with` to inehrit data from the parent. For more details see [Component System](/guide/components.html).
+用注册的组件作为子VM对象编译这个元素。可以使用`v-with`从父对象继承数据。更多信息请看[组件系统](/guide/components.html).
 
 ### v-ref
 
-Register a reference to a child component on its parent for easier access. Only respected when used in combination with `v-component` or `v-repeat`. The component instance will be accessible on its parent's `$` object. For an example, see [child reference](/guide/components.html#Child_Reference).
+在父对象上注册一个子对象的引用为了更方便的访问。只和`v-component`和`v-repeat`联合使用。组件实例将会被它的父元素使用`$`来访问，例子请看[子对象引用](/guide/components.html#Child_Reference).
 
-When used with `v-repeat`, the value will be an Array containing all the child Vue instances corresponding to the Array they are bound to.
+当和`v-repeat`一起使用，这个值将会是一个包含了所有对应的子VM实例的数组。
 
 ### v-el
 
-Register a reference to a DOM element on its owner Vue instance for easier access. e.g. `<div v-el="hi">` will be accessible as `vm.$$.hi`.
+注册一个DOM元素的引用到它对应的Vue对象上，为了方面访问。例如`<div v-el="hi">` 将会用`vm.$$.hi`来访问这个元素。
 
 ### v-partial
 
-Replace the element's innerHTML with a registered partial. Partials can be registered with `Vue.partial()` or passed inside the `partials` option.
+使用注册的片段来替换元素的innerHTML。可以使用`Vue.partial()`来注册片段或者传入`partials`参数。
 
-Using the mustache tag inside `v-partial` makes it reactive:
+在`v-partail`使用大括号可以使它反射：
 
 ``` html
 <!-- content will change based on vm.partialId -->
 <div v-partial="{&#123;partialId&#125;}"></div>
 ```
 
-You can also use this syntax (which doesn't support reactivity):
+你也可以这种语法（不支持反射）：
 
 ``` html
 <div>&#123;&#123;> my-partial&#125;&#125;</div>
@@ -233,18 +235,18 @@ You can also use this syntax (which doesn't support reactivity):
 
 ### v-transition
 
-Notify Vue.js to apply transitions to this element. The transition classes are applied when certain transition-triggering directives modify the element, or when the Vue instance's DOM manipulation methods are called.
+通知Vue.js应用转化到元素上。这个转化类将在某些转换触发指示器修改元素或者Vue实例的DOM操作方法调用时应用。
 
-For details, see [the guide on transitions](/guide/transitions.html).
+细节请看 [转变指南](/guide/transitions.html).
 
-## Empty Directives
+## 空指示器
 
-> Empty directives do not require and will ignore their attribute value.
+> 空指示器不要求也会忽略他们的属性值。
 
 ### v-pre
 
-Skip compilation for this element and all its children. Skipping large numbers of nodes with no directives on them can speed up compilation.
+跳过这个元素以及子元素的编译。跳过大部分的没有指示器的节点可以提高编译速度。
 
 ### v-cloak
 
-This property remains on the element until the associated ViewModel finishes compilation. Combined with CSS rules such as `[v-cloak] { display: none }`, this directive can be used to hide un-compiled mustache bindings until the ViewModel is ready.
+这个属性一直保持到相关的VM对象完成编译。和一些CSS规则一起使用比如`[v-cloak] {display: none}`，这个指示器用来隐藏没有编译的大括号绑定直到VM准备好。
