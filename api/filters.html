@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Filters - vue.js</title>
+        <title>过滤器 - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -60,19 +60,19 @@
         <h2>Api</h2>
         <ul class="menu-root">
             
-                <li><a href="/api/index.html" class="sidebar-link">The Vue Constructor</a></li>
+                <li><a href="/api/index.html" class="sidebar-link">Vue构造函数</a></li>
             
                 <li><a href="/api/options.html" class="sidebar-link">Options</a></li>
             
-                <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+                <li><a href="/api/instance-properties.html" class="sidebar-link">实例属性</a></li>
             
                 <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
             
-                <li><a href="/api/global-api.html" class="sidebar-link">Global API</a></li>
+                <li><a href="/api/global-api.html" class="sidebar-link">全局 API</a></li>
             
                 <li><a href="/api/directives.html" class="sidebar-link">指示器</a></li>
             
-                <li><a href="/api/filters.html" class="sidebar-link current">Filters</a></li>
+                <li><a href="/api/filters.html" class="sidebar-link current">过滤器</a></li>
             
             <li><a href="http://legacy.vuejs.org">Looking for 0.10 docs?</a></li>
             <li style="margin:10px 0 3px">
@@ -85,7 +85,7 @@
 </div>
 
 <div class="content api with-sidebar">
-    <h1>Filters</h1>
+    <h1>过滤器</h1>
     <h3 id="capitalize">capitalize</h3>
 <p><em>‘abc’ =&gt; ‘Abc’</em></p>
 <h3 id="uppercase">uppercase</h3>
@@ -94,29 +94,29 @@
 <p><em>‘ABC’ =&gt; ‘abc’</em></p>
 <h3 id="currency">currency</h3>
 <ul>
-<li>this filter takes one optional argument</li>
+<li>可以带一个可选参数</li>
 </ul>
 <p><em>12345 =&gt; $12,345.00</em></p>
-<p>You can pass an optional argument which will be used as the currency symbol (default is $).</p>
+<p>可以传入一个符号 (默认是 $).</p>
 <h3 id="pluralize">pluralize</h3>
 <ul>
-<li>this filter takes at least one argument</li>
+<li>至少有一个参数</li>
 </ul>
-<p>Pluralizes the argument based on the filtered value. When there is exactly one arg, plural forms simply add an “s” at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple … forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.</p>
-<p><strong>Example:</strong></p>
+<p>基于过滤的值来使参数复数化。如果只有一个参数，复数化的形式只是简单的加一个”s”。 如果有一个以上的参数，那么参数将会当成相对应的一个，两个，三个等等复数化的形式相对应的数组。如果复数化的内容超过了参数长度，它将使用数组中的最后一个值。</p>
+<p><strong>例子:</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">{&#123;count&#125;} {&#123;count | pluralize item&#125;}</div></pre></td></tr></table></figure>
 
 <p><em>1 =&gt; ‘1 item’</em><br><em>2 =&gt; ‘2 items’</em></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">{&#123;date&#125;}{&#123;date | pluralize st nd rd th&#125;}</div></pre></td></tr></table></figure>
 
-<p>Will result in:</p>
+<p>结果是:</p>
 <p><em>1 =&gt; ‘1st’</em><br><em>2 =&gt; ‘2nd’</em><br><em>3 =&gt; ‘3rd’</em><br><em>4 =&gt; ‘4th’</em><br><em>5 =&gt; ‘5th’</em></p>
 <h3 id="key">key</h3>
 <ul>
-<li>this filter only works in <code>v-on</code></li>
-<li>this filter takes exactly one argument</li>
+<li>这个过滤器只工作在<code>v-on</code>里</li>
+<li>只有并只能有一个参数</li>
 </ul>
-<p>Wrap the handler so it only gets called when the keyCode matches the argument. You can also use string aliases for a few commonly-used keys:</p>
+<p>当键值匹配上可以调用一个包装的处理函数。你还可以使用几个字符串命名的常用的键：</p>
 <ul>
 <li>enter</li>
 <li>tab</li>
@@ -127,41 +127,41 @@
 <li>left</li>
 <li>right</li>
 </ul>
-<p><strong>Example:</strong></p>
+<p><strong>例子:</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on</span>=<span class="value">"keyup:doSomething | key enter"</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p><code>doSomething</code> will only be called when the Enter key is pressed.</p>
+<p><code>doSomething</code> 会在回车按下后调用执行。</p>
 <h3 id="filterBy">filterBy</h3>
 <p><strong>Syntax:</strong> <code>filterBy searchKey [in dataKey]</code>.</p>
 <ul>
-<li>this filter only works in <code>v-repeat</code></li>
-<li>this is a computed filter</li>
+<li>只在<code>v-repeat</code>中有效</li>
+<li>是一个计算的过滤器</li>
 </ul>
-<p>Make <code>v-repeat</code> only display a filtered version of the source Array. The <code>searchKey</code> argument is a property key on the context ViewModel. The value of that property will be used as the string to search for:</p>
+<p>使<code>v-repeat</code>只显示一个源数组的过滤值。<code>searchKey</code>参数是一个在VM上下文的一个属性键，这个属性值将会被当成寻找对象：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-model</span>=<span class="value">"searchText"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users | filterBy searchText"</span>&gt;</span>{&#123;name&#125;}<span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p>When the filter is applied, it will filter the <code>users</code> Array by recursively searching for the current value of <code>searchText</code> on each item in the Array. For example, if an item is <code>{ name: &#39;Jack&#39;, phone: &#39;555-123-4567&#39; }</code> and <code>searchText</code> has value <code>&#39;555&#39;</code>, the item will be considered a match.</p>
-<p>Optionally, you can narrow down which specific property to search in with the optional <code>in dataKey</code> argument:</p>
+<p>如果使用了这个过滤器，它将会在数组中的每个元素上递归的寻找<code>searchText</code>的值。例如，如果一个元素是<code>{ name: &quot;Jack&quot;, phone: &quot;555-123-4567&quot;}</code>而且<code>searchText</code>有值<code>&#39;555&#39;</code>，这个元素就可以认为是匹配上了。</p>
+<p>你也可以使用<code>in dateKey</code>参数缩小范围：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-model</span>=<span class="value">"searchText"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users | filterBy searchText in name"</span>&gt;</span>{&#123;name&#125;}<span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p>Now the item will only match if the value of <code>searchText</code> is found in its <code>name</code> property. So <code>searchText</code> with value <code>&#39;555&#39;</code> will no longer match this item, but <code>&#39;Jack&#39;</code> will.</p>
-<p>Finally, you can use quotes to indicate literal arguments:</p>
+<p>现在，只会去用<code>searchText</code>的值去匹配元素的<code>name</code>属性。所以<code>searchText</code>是<code>&quot;555&quot;</code>的将不会匹配上，但是<code>&quot;Jack&quot;</code>还是会匹配上。</p>
+<p>最后，你可以使用引号表示文本参数：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users | filterBy '555' in 'phone'"</span>&gt;</span>{&#123;name&#125;}<span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h3 id="orderBy">orderBy</h3>
 <p><strong>Syntax:</strong> <code>orderBy sortKey [reverseKey]</code>.</p>
 <ul>
-<li>this filter only works in <code>v-repeat</code></li>
-<li>this is a computed filter</li>
+<li>只在<code>v-repeat</code>有效</li>
+<li>是一个计算的过滤器</li>
 </ul>
-<p>Sort <code>v-repeat</code>‘s displayed result. The <code>sortKey</code> argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional <code>reverseKey</code> argument is also a property key on the context ViewModel, but the value’s truthiness will determine whether the result should be reversed.</p>
+<p>排序<code>v-repeat</code>的显示结果。<code>sortKey</code>参数是VM上下文的一个属性键。它的值将会被用来排序。可选择的<code>reverseKey</code>也是一个属性键，但是这个值决定要不要翻转结果。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users | orderBy field reverse"</span>&gt;</span>{&#123;name&#125;}<span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
 
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue({</div><div class="line">  <span class="comment">/* ... */</span></div><div class="line">  data: {</div><div class="line">    field: <span class="string">'name'</span>,</div><div class="line">    reverse: <span class="literal">false</span></div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
 
-<p>You can also use quotes for literal sort key. To indicate a literal reverse, use <code>-1</code>:</p>
+<p>你也可以使用引号表示文本参数。使用<code>-1</code>表示文本的翻转：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"users | orderBy 'name' -1"</span>&gt;</span>{&#123;name&#125;}<span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
 

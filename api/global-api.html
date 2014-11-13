@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Global API - vue.js</title>
+        <title>全局 API - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -60,19 +60,19 @@
         <h2>Api</h2>
         <ul class="menu-root">
             
-                <li><a href="/api/index.html" class="sidebar-link">The Vue Constructor</a></li>
+                <li><a href="/api/index.html" class="sidebar-link">Vue构造函数</a></li>
             
                 <li><a href="/api/options.html" class="sidebar-link">Options</a></li>
             
-                <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+                <li><a href="/api/instance-properties.html" class="sidebar-link">实例属性</a></li>
             
                 <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
             
-                <li><a href="/api/global-api.html" class="sidebar-link current">Global API</a></li>
+                <li><a href="/api/global-api.html" class="sidebar-link current">全局 API</a></li>
             
                 <li><a href="/api/directives.html" class="sidebar-link">指示器</a></li>
             
-                <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+                <li><a href="/api/filters.html" class="sidebar-link">过滤器</a></li>
             
             <li><a href="http://legacy.vuejs.org">Looking for 0.10 docs?</a></li>
             <li style="margin:10px 0 3px">
@@ -85,27 +85,27 @@
 </div>
 
 <div class="content api with-sidebar">
-    <h1>Global API</h1>
+    <h1>全局 API</h1>
     <h3 id="Vue-config">Vue.config</h3>
-<p><code>Vue.config</code> is an object containing Vue’s global settings. Here are the list of all the avaiable settings with their default values:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="comment">// print stack trace for warnings?</span></div><div class="line">  debug: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// attribute prefix for directives</span></div><div class="line">  prefix: <span class="string">'v-'</span>,</div><div class="line">  <span class="comment">// interpolation delimiters</span></div><div class="line">  <span class="comment">// for HTML interpolations, add</span></div><div class="line">  <span class="comment">// 1 extra outer-most character.</span></div><div class="line">  delimiters: [<span class="string">'{&#123;'</span>, <span class="string">'&#125;}'</span>],</div><div class="line">  <span class="comment">// suppress warnings?</span></div><div class="line">  silent: <span class="literal">false</span>,</div><div class="line">  <span class="comment">// interpolate mustache bindings?</span></div><div class="line">  interpolate: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// use async updates (for directives & watchers)?</span></div><div class="line">  async: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// allow altering observed Array's prototype chain?</span></div><div class="line">  proto: <span class="literal">true</span></div><div class="line">}</div></pre></td></tr></table></figure>
+<p><code>Vue.config</code>是一个包含了Vue的全局设置的一个对象。这里是一个有效的设置项列表和它们的默认值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="comment">// 是否打印堆栈信息？</span></div><div class="line">  debug: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 指示器前缀</span></div><div class="line">  prefix: <span class="string">'v-'</span>,</div><div class="line">  <span class="comment">// 插入到HTML的插入分隔符， add</span></div><div class="line">  <span class="comment">// 1 extra outer-most character.</span></div><div class="line">  delimiters: [<span class="string">'{&#123;'</span>, <span class="string">'&#125;}'</span>],</div><div class="line">  <span class="comment">// 不要警告信息？</span></div><div class="line">  silent: <span class="literal">false</span>,</div><div class="line">  <span class="comment">// 插入大括号绑定？</span></div><div class="line">  interpolate: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 使用异步更新(for directives & watchers)？</span></div><div class="line">  async: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 允许修改监控数组的原型链？</span></div><div class="line">  proto: <span class="literal">true</span></div><div class="line">}</div></pre></td></tr></table></figure>
 
-<p>You can modify them directly, for example:</p>
+<p>你可以直接改这些设置项。例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vue.config.debug = <span class="literal">true</span> <span class="comment">// turn on debugging mode</span></div></pre></td></tr></table></figure>
 
-<p>Example for changing interpolation delimiters:</p>
+<p>修改插入符的例子：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Vue.config.delimiters = [<span class="string">'(%'</span>, <span class="string">'%)'</span>]</div><div class="line"><span class="comment">// tags now are (% %) for text</span></div><div class="line"><span class="comment">// and ((% %)) for HTML</span></div></pre></td></tr></table></figure>
 
 <h3 id="Vue-extend(_options_)">Vue.extend( options )</h3>
 <ul>
 <li><strong>options</strong> <code>Object</code></li>
 </ul>
-<p>Create a “subclass” of the base Vue constructor. All <a href="/api/options.html">instantiation options</a> can be used here. The special cases to note here are <code>el</code> and <code>data</code>, which must be functions in this case.</p>
-<p>Internally, <code>Vue.extend()</code> is called on all component options before instantiating the components. For more details regarding components, see <a href="/guide/components.html">Component System</a>.</p>
-<p><strong>Example</strong></p>
+<p>基于Vue构造函数创建一个<code>子类</code>。所有<a href="/api/options.html">实例化选项</a>都可以在这里使用。这里需要注意的是<code>el</code>和<code>data</code>，这里必须是函数。</p>
+<p>在内部，<code>Vue.extend()</code>在实例化组件之前在所有的实例选项中调用。关于组件更多的信息请看<a href="/guide/components.html">组件系统</a>。</p>
+<p><strong>例子</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Profile = Vue.extend({</div><div class="line">  el: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.createElement(<span class="string">'p'</span>)</div><div class="line">  },</div><div class="line">  template: <span class="string">'&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125; aka &#123;&#123;alias&#125;&#125;'</span></div><div class="line">})</div><div class="line"><span class="keyword">var</span> profile = <span class="keyword">new</span> Profile({</div><div class="line">  data: {</div><div class="line">    firstName : <span class="string">'Walter'</span>,</div><div class="line">    lastName  : <span class="string">'White'</span>,</div><div class="line">    alias     : <span class="string">'Heisenberg'</span></div><div class="line">  }  </div><div class="line">})</div><div class="line">profile.$appendTo(<span class="string">'body'</span>)</div></pre></td></tr></table></figure>
 
-<p>Will result in:</p>
+<p>结果:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">p</span>&gt;</span>Walter White aka Heisenberg<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h3 id="Vue-directive(_id,_[definition]_)">Vue.directive( id, [definition] )</h3>
@@ -113,54 +113,55 @@
 <li><strong>id</strong> <code>String</code></li>
 <li><strong>definition</strong> <code>Function</code> or <code>Object</code> <em>optional</em></li>
 </ul>
-<p>Register or retrieve a global custom directive. For more details see <a href="/guide/custom-directive.html">Writing Custom Directives</a>.</p>
+<p>注册或者获取一个自定义的指示器。更多的信息请看<a href="/guide/custom-directive.html">写一个自定义的指示器</a>。</p>
 <h3 id="Vue-filter(_id,_[definition]_)">Vue.filter( id, [definition] )</h3>
 <ul>
 <li><strong>id</strong> <code>String</code></li>
 <li><strong>definition</strong> <code>Function</code> <em>optional</em></li>
 </ul>
-<p>Register or retrieve a global custom filter. For more details see <a href="/guide/custom-filter.html">Writing Custom Filters</a>.</p>
+<p>注册或者获取一个自定义的过滤器。更多的信息请看<a href="/guide/custom-filter.html">写一个自定义的过滤器</a>。</p>
 <h3 id="Vue-component(_id,_[definition]_)">Vue.component( id, [definition] )</h3>
 <ul>
 <li><strong>id</strong> <code>String</code></li>
 <li><strong>definition</strong> <code>Function Constructor</code> or <code>Object</code> <em>optional</em></li>
 </ul>
 <p>Register or retrieve a global component. For more details see <a href="/guide/components.html">Component System</a>.</p>
+<p>注册或者获取一个全局的组件。更多的信息请看<a href="/guide/components.html">组建系统</a>。</p>
 <h3 id="Vue-transition(_id,_[definition]_)">Vue.transition( id, [definition] )</h3>
 <ul>
 <li><strong>id</strong> <code>String</code></li>
 <li><strong>definition</strong> <code>Object</code> <em>optional</em></li>
 </ul>
-<p>Register or retrieve a global JavaScript transition effect definition. For more details see the guide for <a href="/guide/transitions.html#JavaScript_Functions">JavaScript Transitions</a>.</p>
+<p>注册或者获取一个全局的Javascript转化效果。更多的信息请看<a href="/guide/transitions.html#JavaScript_Functions">javascript转化</a>。</p>
 <h3 id="Vue-partial(_id,_[definition]_)">Vue.partial( id, [definition] )</h3>
 <ul>
 <li><strong>id</strong> <code>String</code></li>
 <li><strong>definition</strong> <code>String | Node</code> <em>optional</em></li>
 </ul>
-<p>Register or retrieve a global partial. The definition can be a template string, a querySelector that starts with <code>#</code>, a DOM element (whose innerHTML will be used as the template string), or a DocumentFragment.</p>
-<p><strong>Example</strong></p>
+<p>注册或者获取一个全局的片段。它可以是一个模板文本，<code>#</code>开头的选择器，一个DOM元素，或者一个文档片段。</p>
+<p><strong>例子</strong></p>
 <p>HTML</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></div><div class="line">  &#123;&#123;&gt; avatar&#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>JavaScript</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Vue.partial(<span class="string">'avatar'</span>, <span class="string">'&lt;img v-attr="src:avatarURL"&gt;'</span>)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue({</div><div class="line">  el: <span class="string">'#demo'</span>,</div><div class="line">  data: {</div><div class="line">    avatarURL: <span class="string">'/images/avatar.jpg'</span></div><div class="line">  }    </div><div class="line">})</div></pre></td></tr></table></figure>
 
-<p>Will result in:</p>
+<p>结果:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/images/avatar.jpg"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h3 id="Vue-nextTick(_callback_)">Vue.nextTick( callback )</h3>
 <ul>
 <li><strong>callback</strong> <code>Function</code></li>
 </ul>
-<p>Vue.js batches view updates and executes them all asynchronously. It uses <code>requestAnimationFrame</code> if available and falls back to <code>setTimeout(fn, 0)</code>. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.</p>
+<p>Vue.js批量进行视图更新而且全部异步执行它们。如果有效并且<code>setTimeout(fn, 0)</code>的时间到了，它会使用<code>requestAnimationFrame</code>。这个方法再下一个视图更新后调用回调函数，这个在你想等到视图更新是有效的。</p>
 <h3 id="Vue-use(_plugin,_[args…]_)">Vue.use( plugin, [args…] )</h3>
 <ul>
 <li><strong>plugin</strong> <code>Object</code> or <code>Function</code></li>
 <li><strong>args…</strong> <em>optional</em></li>
 </ul>
-<p>Mount a Vue.js plugin. If the plugin is an Object, it must have an <code>install</code> method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see <a href="/guide/extending.html#Extend_with_Plugins">Plugins</a>.</p>
+<p>增加一个Vue.js的插件。如果插件是一个对象，它必须有一个<code>install</code>方法。如果他自己就是一个函数，它将会被当成<code>install</code>方法。这个方法将会把Vue当成参数调用。更多信息请看<a href="/guide/extending.html#Extend_with_Plugins">插件</a>。</p>
 <h3 id="Vue-util">Vue.util</h3>
-<p>Exposes the internal <code>util</code> module, which contains a number of utility methods. This is intended for advanced plugin/directive authoring, so you will need to look at the source code to see what’s available.</p>
+<p>暴露内部的<code>util</code>模块，它包含了很多实用的方法。这些给高级的插件/指示器准备的，所以你需要看看源码他们是怎样的。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!</div>
 </div>
