@@ -1,24 +1,24 @@
-title: "The Vue Constructor"
+title: "Vue构造函数"
 type: api
 order: 1
 ---
 
-The `Vue` constructor is the core of Vue.js. It is a constructor function that allows you to create Vue instances. Creating a Vue instance is straightforward:
+`Vue`构造函数是Vue.js的核心。通过它你可以创建一个Vue实例。创建一个Vue实例是简单的：
 
 ``` js
 var vm = new Vue({ /* options */ })
 ```
 
-When you instantiate a Vue instance, you need to pass in an option object which can include information about the DOM element, data object, mixin methods, lifecycle callbacks and more. See the full list of [Instantiation Options](/api/options.html).
+当你实例化一个Vue实例的时候，你需要传入一个包含了DOM元素，数据对象，混入方法，生命周期回调等等信息的选项对象。完整列表看[实例化选项](/api/options.html)
 
-Each Vue instance is essentially a ViewModel (hence the variable name `vm` you will see throughout the docs). It has an associated DOM element `$el`, which is roughly the V in MVVM. It also has an associated JavaScript object `$data`, which corresponds to the M in MVVM. Changing the M results in updates in the V. For two-way bindings, user inputs triggered in the V results in changes in the M. For more details check out [Instance Properties](/api/instance-properties.html).
+每个Vue实例本质上是一个VM对象（就是贯穿文档中的`vm`）。它有一个关联的DOM元素`$el`，这就是MVVM中的V，它也关联一个javascript对象`$data`, 它就是MVVM中的M。修改M将导致更新V。双向绑定的，用户修改了V的值将导致M中的值修改。更多细节看[实例属性](/api/instance-properties.html)。
 
-If you provided the `el` option at instantiation, the Vue instance will immediately enter the compilation phase. Otherwise, it will wait until `vm.$mount()` is called before it starts compilation. During the compilation phase, Vue walks through the DOM and collects the directives it runs into, and "links" the data and the DOM with these directives. Once linked, these DOM nodes are now said to be managed by the Vue instance. A DOM node can only be managed by one Vue instance, and should not be compiled more than once.
+如果你在实例化的时候提供了`el`选项，Vue实例会立刻进入编译进程，不然，它将会等到`vm.$mount()`调用之后才进行编译。在编译过程中，Vue遍历DOM收集它里面的指示器，然后用这些指示器关联数据和DOM。一旦关联，这些DOM节点称为被Vue实例管理了。一个DOM节点只能被一个Vue实例管理，而且应该只初始化一次。
 
-Vue instances proxy access to their `$data` objects, so if you have `vm.$data.msg` you can also access it as `vm.msg`. This might look a bit magical, but is totally optional. You can stick to `vm.$data.msg` for more explicit data access. However it is still important to notice the difference between `vm` and `vm.$data`, since the former cannot be observed by other Vue instances as data.
+Vue实例代理访问他们的`$data`对象，所以如果你有`vm.$data.msg`你可以这样`vm.msg`访问。这看上去想魔法，但是它完全是可选的。你可以直接像这样访问`vm.$data.msg`。然而知道`vm`和`vm.$data`的不同点还是很重要的，因为前者不能被其他的Vue实例作为数据监控。
 
-It's also worth noting that data objects do not necessarily belong to a single Vue instance - multiple ViewModels can observe the same piece of data, whether directly as `$data` or nested under it. This is useful when multiple components need to react to a shared global state object.
+同样值得注意的是,数据对象不一定属于单个Vue实例 - 多个VM可以监控同一份数据，不论是直接作为`$data`还是嵌套在它里面。在多个组件需要对可共享的全局对象状态作出反应的时候是很有用的。
 
-Each Vue instance also has a number of [Instance Methods](/api/instance-methods.html) which cover data observation, event communication and DOM manipulation.
+每个Vue实例也有许多的[实例方法](/api/instance-methods.html)，包含了数据监控，事件沟通，DOM管理等。
 
-Finally, the `Vue` constructor itself also exposes the [Global API](/api/global-api.html), which allow you to extend the `Vue` class, configure global settings and register global custom assets such as components, directives, filters and more.
+最后，`Vue`构造函数自己也是暴露在[全局 API](/api/global-api.html)中，这就允许你扩展`Vue`类，配置全局设置，注册全局的自定义的东西如组件，指示器，过滤等等。

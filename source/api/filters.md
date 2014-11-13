@@ -1,4 +1,4 @@
-title: Filters
+title: 过滤器
 type: api
 order: 7
 ---
@@ -17,19 +17,19 @@ order: 7
 
 ### currency
 
-- this filter takes one optional argument
+- 可以带一个可选参数
 
 *12345 => $12,345.00*
 
-You can pass an optional argument which will be used as the currency symbol (default is $).
+可以传入一个符号 (默认是 $).
 
 ### pluralize
 
-- this filter takes at least one argument
+- 至少有一个参数
 
-Pluralizes the argument based on the filtered value. When there is exactly one arg, plural forms simply add an "s" at the end. When there are more than one argument, the arguments will be used as array of strings corresponding to the single, double, triple ... forms of the word to be pluralized. When the number to be pluralized exceeds the length of the args, it will use the last entry in the array.
+基于过滤的值来使参数复数化。如果只有一个参数，复数化的形式只是简单的加一个"s"。 如果有一个以上的参数，那么参数将会当成相对应的一个，两个，三个等等复数化的形式相对应的数组。如果复数化的内容超过了参数长度，它将使用数组中的最后一个值。
 
-**Example:**
+**例子:**
 
 ``` html
 {&#123;count&#125;} {&#123;count | pluralize item&#125;}
@@ -42,7 +42,7 @@ Pluralizes the argument based on the filtered value. When there is exactly one a
 {&#123;date&#125;}{&#123;date | pluralize st nd rd th&#125;}
 ```
 
-Will result in:
+结果是:
 
 *1 => '1st'*  
 *2 => '2nd'*
@@ -52,10 +52,10 @@ Will result in:
 
 ### key
 
-- this filter only works in `v-on`
-- this filter takes exactly one argument
+- 这个过滤器只工作在`v-on`里
+- 只有并只能有一个参数
 
-Wrap the handler so it only gets called when the keyCode matches the argument. You can also use string aliases for a few commonly-used keys:
+当键值匹配上可以调用一个包装的处理函数。你还可以使用几个字符串命名的常用的键：
 
 - enter
 - tab
@@ -66,22 +66,22 @@ Wrap the handler so it only gets called when the keyCode matches the argument. Y
 - left
 - right
 
-**Example:**
+**例子:**
 
 ``` html
 <input v-on="keyup:doSomething | key enter">
 ```
 
-`doSomething` will only be called when the Enter key is pressed.
+`doSomething` 会在回车按下后调用执行。
 
 ### filterBy
 
 **Syntax:** `filterBy searchKey [in dataKey]`.
 
-- this filter only works in `v-repeat`
-- this is a computed filter
+- 只在`v-repeat`中有效
+- 是一个计算的过滤器
 
-Make `v-repeat` only display a filtered version of the source Array. The `searchKey` argument is a property key on the context ViewModel. The value of that property will be used as the string to search for:
+使`v-repeat`只显示一个源数组的过滤值。`searchKey`参数是一个在VM上下文的一个属性键，这个属性值将会被当成寻找对象：
 
 ``` html
 <input v-model="searchText">
@@ -90,9 +90,9 @@ Make `v-repeat` only display a filtered version of the source Array. The `search
 </ul>
 ```
 
-When the filter is applied, it will filter the `users` Array by recursively searching for the current value of `searchText` on each item in the Array. For example, if an item is `{ name: 'Jack', phone: '555-123-4567' }` and `searchText` has value `'555'`, the item will be considered a match.
+如果使用了这个过滤器，它将会在数组中的每个元素上递归的寻找`searchText`的值。例如，如果一个元素是`{ name: "Jack", phone: "555-123-4567"}`而且`searchText`有值`'555'`，这个元素就可以认为是匹配上了。
 
-Optionally, you can narrow down which specific property to search in with the optional `in dataKey` argument:
+你也可以使用`in dateKey`参数缩小范围：
 
 ``` html
 <input v-model="searchText">
@@ -101,9 +101,9 @@ Optionally, you can narrow down which specific property to search in with the op
 </ul>
 ```
 
-Now the item will only match if the value of `searchText` is found in its `name` property. So `searchText` with value `'555'` will no longer match this item, but `'Jack'` will.
+现在，只会去用`searchText`的值去匹配元素的`name`属性。所以`searchText`是`"555"`的将不会匹配上，但是`"Jack"`还是会匹配上。
 
-Finally, you can use quotes to indicate literal arguments:
+最后，你可以使用引号表示文本参数：
 
 ``` html
 <ul>
@@ -115,10 +115,10 @@ Finally, you can use quotes to indicate literal arguments:
 
 **Syntax:** `orderBy sortKey [reverseKey]`.
 
-- this filter only works in `v-repeat`
-- this is a computed filter
+- 只在`v-repeat`有效
+- 是一个计算的过滤器
 
-Sort `v-repeat`'s displayed result. The `sortKey` argument is a property key on the context ViewModel. The value of that property will be used as the key to sort the Array items with. The optional `reverseKey` argument is also a property key on the context ViewModel, but the value's truthiness will determine whether the result should be reversed.
+排序`v-repeat`的显示结果。`sortKey`参数是VM上下文的一个属性键。它的值将会被用来排序。可选择的`reverseKey`也是一个属性键，但是这个值决定要不要翻转结果。
 
 ``` html
 <ul>
@@ -136,7 +136,7 @@ new Vue({
 })
 ```
 
-You can also use quotes for literal sort key. To indicate a literal reverse, use `-1`:
+你也可以使用引号表示文本参数。使用`-1`表示文本的翻转：
 
 ``` html
 <ul>

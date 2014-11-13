@@ -1,40 +1,39 @@
-title: Global API
+title: 全局 API
 type: api
 order: 5
 ---
 
 ### Vue.config
 
-`Vue.config` is an object containing Vue's global settings. Here are the list of all the avaiable settings with their default values:
+`Vue.config`是一个包含了Vue的全局设置的一个对象。这里是一个有效的设置项列表和它们的默认值：
 
 ``` js
 {
-  // print stack trace for warnings?
+  // 是否打印堆栈信息？
   debug: true,
-  // attribute prefix for directives
+  // 指示器前缀
   prefix: 'v-',
-  // interpolation delimiters
-  // for HTML interpolations, add
+  // 插入到HTML的插入分隔符， add
   // 1 extra outer-most character.
   delimiters: ['{&#123;', '&#125;}'],
-  // suppress warnings?
+  // 不要警告信息？
   silent: false,
-  // interpolate mustache bindings?
+  // 插入大括号绑定？
   interpolate: true,
-  // use async updates (for directives & watchers)?
+  // 使用异步更新(for directives & watchers)？
   async: true,
-  // allow altering observed Array's prototype chain?
+  // 允许修改监控数组的原型链？
   proto: true
 }
 ```
 
-You can modify them directly, for example:
+你可以直接改这些设置项。例如：
 
 ``` js
 Vue.config.debug = true // turn on debugging mode
 ```
 
-Example for changing interpolation delimiters:
+修改插入符的例子：
 
 ``` js
 Vue.config.delimiters = ['(%', '%)']
@@ -46,11 +45,11 @@ Vue.config.delimiters = ['(%', '%)']
 
 - **options** `Object`
 
-Create a "subclass" of the base Vue constructor. All [instantiation options](/api/options.html) can be used here. The special cases to note here are `el` and `data`, which must be functions in this case.
+基于Vue构造函数创建一个`子类`。所有[实例化选项](/api/options.html)都可以在这里使用。这里需要注意的是`el`和`data`，这里必须是函数。
 
-Internally, `Vue.extend()` is called on all component options before instantiating the components. For more details regarding components, see [Component System](/guide/components.html).
+在内部，`Vue.extend()`在实例化组件之前在所有的实例选项中调用。关于组件更多的信息请看[组件系统](/guide/components.html)。
 
-**Example**
+**例子**
 
 ``` js
 var Profile = Vue.extend({
@@ -69,7 +68,7 @@ var profile = new Profile({
 profile.$appendTo('body')
 ```
 
-Will result in:
+结果:
 
 ``` html
 <p>Walter White aka Heisenberg</p>
@@ -80,14 +79,14 @@ Will result in:
 - **id** `String`
 - **definition** `Function` or `Object` *optional*
 
-Register or retrieve a global custom directive. For more details see [Writing Custom Directives](/guide/custom-directive.html).
+注册或者获取一个自定义的指示器。更多的信息请看[写一个自定义的指示器](/guide/custom-directive.html)。
 
 ### Vue.filter( id, [definition] )
 
 - **id** `String`
 - **definition** `Function` *optional*
 
-Register or retrieve a global custom filter. For more details see [Writing Custom Filters](/guide/custom-filter.html).
+注册或者获取一个自定义的过滤器。更多的信息请看[写一个自定义的过滤器](/guide/custom-filter.html)。
 
 ### Vue.component( id, [definition] )
 
@@ -96,21 +95,24 @@ Register or retrieve a global custom filter. For more details see [Writing Custo
 
 Register or retrieve a global component. For more details see [Component System](/guide/components.html).
 
+注册或者获取一个全局的组件。更多的信息请看[组建系统](/guide/components.html)。
+
 ### Vue.transition( id, [definition] )
 
 - **id** `String`
 - **definition** `Object` *optional*
 
-Register or retrieve a global JavaScript transition effect definition. For more details see the guide for [JavaScript Transitions](/guide/transitions.html#JavaScript_Functions).
+注册或者获取一个全局的Javascript转化效果。更多的信息请看[javascript转化](/guide/transitions.html#JavaScript_Functions)。
+
 
 ### Vue.partial( id, [definition] )
 
 - **id** `String`
 - **definition** `String | Node` *optional*
 
-Register or retrieve a global partial. The definition can be a template string, a querySelector that starts with `#`, a DOM element (whose innerHTML will be used as the template string), or a DocumentFragment.
+注册或者获取一个全局的片段。它可以是一个模板文本，`#`开头的选择器，一个DOM元素，或者一个文档片段。
 
-**Example**
+**例子**
 
 HTML
 
@@ -133,7 +135,7 @@ new Vue({
 })
 ```
 
-Will result in:
+结果:
 
 ``` html
 <div id="demo">
@@ -145,15 +147,15 @@ Will result in:
 
 - **callback** `Function`
 
-Vue.js batches view updates and executes them all asynchronously. It uses `requestAnimationFrame` if available and falls back to `setTimeout(fn, 0)`. This method calls the callback after the next view update, which can be useful when you want to wait until the view has been updated.
+Vue.js批量进行视图更新而且全部异步执行它们。如果有效并且`setTimeout(fn, 0)`的时间到了，它会使用`requestAnimationFrame`。这个方法再下一个视图更新后调用回调函数，这个在你想等到视图更新是有效的。
 
 ### Vue.use( plugin, [args...] )
 
 - **plugin** `Object` or `Function`
 - **args...** *optional*
 
-Mount a Vue.js plugin. If the plugin is an Object, it must have an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument. For more details, see [Plugins](/guide/extending.html#Extend_with_Plugins).
+增加一个Vue.js的插件。如果插件是一个对象，它必须有一个`install`方法。如果他自己就是一个函数，它将会被当成`install`方法。这个方法将会把Vue当成参数调用。更多信息请看[插件](/guide/extending.html#Extend_with_Plugins)。
 
 ### Vue.util
 
-Exposes the internal `util` module, which contains a number of utility methods. This is intended for advanced plugin/directive authoring, so you will need to look at the source code to see what's available.
+暴露内部的`util`模块，它包含了很多实用的方法。这些给高级的插件/指示器准备的，所以你需要看看源码他们是怎样的。
