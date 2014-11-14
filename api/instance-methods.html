@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Instance Methods - vue.js</title>
+        <title>实例方法 - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -62,11 +62,11 @@
             
                 <li><a href="/api/index.html" class="sidebar-link">Vue构造函数</a></li>
             
-                <li><a href="/api/options.html" class="sidebar-link">Options</a></li>
+                <li><a href="/api/options.html" class="sidebar-link">选项</a></li>
             
                 <li><a href="/api/instance-properties.html" class="sidebar-link">实例属性</a></li>
             
-                <li><a href="/api/instance-methods.html" class="sidebar-link current">Instance Methods</a></li>
+                <li><a href="/api/instance-methods.html" class="sidebar-link current">实例方法</a></li>
             
                 <li><a href="/api/global-api.html" class="sidebar-link">全局 API</a></li>
             
@@ -75,20 +75,15 @@
                 <li><a href="/api/filters.html" class="sidebar-link">过滤器</a></li>
             
             <li><a href="http://legacy.vuejs.org">Looking for 0.10 docs?</a></li>
-            <li style="margin:10px 0 3px">
-              <script data-gittip-username="yyx990803"
-                data-gittip-widget="button"
-                src="//gttp.co/v1.js"></script>
-            </li>
         </ul>
     </div>
 </div>
 
 <div class="content api with-sidebar">
-    <h1>Instance Methods</h1>
-    <h2 id="Data">Data</h2>
+    <h1>实例方法</h1>
+    <h2 id="数据">数据</h2>
 <blockquote>
-<p>You can observe data changes on a Vue instance. Note that all watch callbacks fire asynchronously. In addition, value changes are batched within an event loop. This means when a value changes multiple times within a single event loop, the callback will be fired only once with the latest value.</p>
+<p>你可以监控Vue实例上的数据。注意所有的监控回调是异步的。另外的，修改值再一个事件循环中批量进行的。这就是说在一个事件循环中一个值修改了多次，回调函数只会带最新的值调用一次。</p>
 </blockquote>
 <h3 id="vm-$watch(_expression,_callback,_[deep,_immediate]_)">vm.$watch( expression, callback, [deep, immediate] )</h3>
 <ul>
@@ -97,144 +92,144 @@
 <li><strong>deep</strong> <code>Boolean</code> <em>optional</em></li>
 <li><strong>immdediate</strong> <code>Boolean</code> <em>optional</em></li>
 </ul>
-<p>Watch an expression on the Vue instance for changes. The expression can be a single keypath or actual expressions:</p>
+<p>监控Vue实例的一个表达式修改。可以是单独的属性值或者是一个真实的表达式：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vm.$watch(<span class="string">'a + b'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(newVal, oldVal)</span> </span>{</div><div class="line">  <span class="comment">// do something</span></div><div class="line">})</div></pre></td></tr></table></figure>
 
-<p>To also detect nested value changes inside Objects, you need to pass in <code>true</code> for the third <code>deep</code> argument. Note that you don’t need to do so to listen for Array mutations.</p>
+<p>对象中嵌套的值修改也会被监控，你需要传递第三个<code>deep</code>参数为<code>true</code>。注意监听数组中的实例不需要做这个。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vm.$watch(<span class="string">'someObject'</span>, callback, <span class="literal">true</span>)</div><div class="line">vm.someObject.nestedValue = <span class="number">123</span></div><div class="line"><span class="comment">// callback is fired</span></div></pre></td></tr></table></figure>
 
-<p>Passing in <code>true</code> for the fourth <code>immediate</code> argument will trigger the callback immediately with the current value of the expression:</p>
+<p>给第四个参数<code>immediate</code>传递<code>true</code>将带当前表达式立刻触发回调函数：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vm.$watch(<span class="string">'a'</span>, callback, <span class="literal">false</span>, <span class="literal">true</span>)</div><div class="line"><span class="comment">// callback is fired immediately with current value of `a`</span></div></pre></td></tr></table></figure>
 
-<p>Finally, <code>vm.$watch</code> returns an unwatch function that stops firing the callback:</p>
+<p>最后，<code>vm.$watch</code>返回一个不监控的函数来阻止触发回调。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> unwatch = vm.$watch(<span class="string">'a'</span>, cb)</div><div class="line"><span class="comment">// later, teardown the watcher</span></div><div class="line">unwatch()</div></pre></td></tr></table></figure>
 
 <h3 id="vm-$get(_expression_)">vm.$get( expression )</h3>
 <ul>
 <li><strong>expression</strong> <code>String</code></li>
 </ul>
-<p>Retrieve a value from the Vue instance given an expression. Expressions that throw errors will be suppressed and return <code>undefined</code>.</p>
+<p>给定一个表达式在Vue实例上计算返回值，抛出错误的表达式将会被扔掉然后返回<code>undefined</code>。</p>
 <h3 id="vm-$set(_keypath,_value_)">vm.$set( keypath, value )</h3>
 <ul>
 <li><strong>keypath</strong> <code>String</code></li>
 <li><strong>value</strong> <code>*</code></li>
 </ul>
-<p>Set a data value on the Vue instance given a valid keypath. If the path doesn’t exist it will be created.</p>
+<p>给Vue实例上给定的属性设置值。如果属性不存在就创建。</p>
 <h3 id="vm-$add(_keypath,_value_)">vm.$add( keypath, value )</h3>
 <ul>
 <li><strong>keypath</strong> <code>String</code></li>
 <li><strong>value</strong> <code>*</code></li>
 </ul>
-<p>Add a root level property to the Vue instance (and also its <code>$data</code>). Due to the limitations of ES5, Vue cannot detect properties directly added to or deleted from an Object, so use this method and <code>vm.$delete</code> when you need to do so. Additionally, all observed objects are augmented with these two methods too.</p>
+<p>给Vue实例（也是它的<code>$data</code>对象）增加一个根属性。由于ES5的限制，Vue不能直接监控增加和删除属性，所以当你需要这样的时候使用这个方法和<code>vm.$delete</code>。另外，所有监控对象都增加了这两个方法。</p>
 <h3 id="vm-$delete(_keypath_)">vm.$delete( keypath )</h3>
 <ul>
 <li><strong>keypath</strong> <code>String</code></li>
 </ul>
-<p>Delete a root level property on the Vue instance (and also its <code>$data</code>).</p>
+<p>删除Vue实例（也是它的<code>$data</code>对象）的一个根属性。</p>
 <h3 id="vm-$eval(_expression_)">vm.$eval( expression )</h3>
 <ul>
 <li><strong>expression</strong> <code>String</code></li>
 </ul>
-<p>Evaluate an expression that can also contain filters.</p>
+<p>计算可以包含过滤器的表达式</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// assuming vm.msg = 'hello'</span></div><div class="line">vm.$<span class="built_in">eval</span>(<span class="string">'msg | uppercase'</span>) <span class="comment">// -&gt; 'HELLO'</span></div></pre></td></tr></table></figure>
 
 <h3 id="vm-$interpolate(_templateString_)">vm.$interpolate( templateString )</h3>
 <ul>
 <li><strong>templateString</strong> <code>String</code></li>
 </ul>
-<p>Evaluate a piece of template string containing mustache interpolations. Note that this method simply performs string interpolation; attribute directives are not compiled.</p>
+<p>计算包含大括号插入的模板字符串片段。注意这个方法只对字符串插入符有效；属性指示器不会被编译。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// assuming vm.msg = 'hello'</span></div><div class="line">vm.$interpolate(<span class="string">'{&#123;msg&#125;} world!'</span>) <span class="comment">// -&gt; 'hello world!'</span></div></pre></td></tr></table></figure>
 
 <h3 id="vm-$log(_[keypath]_)">vm.$log( [keypath] )</h3>
 <ul>
 <li><strong>keypath</strong> <code>String</code> <em>optional</em></li>
 </ul>
-<p>Log the current instance data as a plain object, which is more console-inspectable than a bunch of getter/setters. Also accepts an optional key.</p>
+<p>把当前的实例数据作为一个普通对象打上日志，它有更多的信息，还可以带一个可选的参数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vm.$log() <span class="comment">// logs entire ViewModel data</span></div><div class="line">vm.$log(<span class="string">'item'</span>) <span class="comment">// logs vm.item</span></div></pre></td></tr></table></figure>
 
 <h2 id="Events">Events</h2>
 <blockquote>
-<p>Each vm is also an event emitter. When you have multiple nested ViewModels, you can use the event system to communicate between them.</p>
+<p>每个vm也是一个时间触发器。当你有多个嵌套的VM，你可以使用事件系统在它们之间沟通。</p>
 </blockquote>
 <h3 id="vm-$dispatch(_event,_[args…]_)">vm.$dispatch( event, [args…] )</h3>
 <ul>
 <li><strong>event</strong> <code>String</code></li>
 <li><strong>args…</strong> <em>optional</em></li>
 </ul>
-<p>Dispatch an event from the current vm that propagates all the way up to its <code>$root</code>. If a callback returns <code>false</code>, it will stop the propagation at its owner instance.</p>
+<p>从当前vm分发一个消息到它的父元素。如果回调函数返回<code>false</code>。将会停止传播。</p>
 <h3 id="vm-$broadcast(_event,_[args…]_)">vm.$broadcast( event, [args…] )</h3>
 <ul>
 <li><strong>event</strong> <code>String</code></li>
 <li><strong>args…</strong> <em>optional</em></li>
 </ul>
-<p>Emit an event to all children vms of the current vm, which gets further broadcasted to their children all the way down. If a callback returns <code>false</code>, its owner instance will not broadcast the event any further.</p>
+<p>给所以的子VM广播一条消息，如果返回<code>false</code>，就不在继续往下广播。</p>
 <h3 id="vm-$emit(_event,_[args…]_)">vm.$emit( event, [args…] )</h3>
 <ul>
 <li><strong>event</strong> <code>String</code></li>
 <li><strong>args…</strong> <em>optional</em></li>
 </ul>
-<p>Trigger an event on this vm only.</p>
+<p>触发一条消息给自己。</p>
 <h3 id="vm-$on(_event,_callback_)">vm.$on( event, callback )</h3>
 <ul>
 <li><strong>event</strong> <code>String</code></li>
 <li><strong>callback</strong> <code>Function</code></li>
 </ul>
-<p>Listen for an event on the current vm.</p>
+<p>在当前的VM上监听消息。</p>
 <h3 id="vm-$once(_event,_callback_)">vm.$once( event, callback )</h3>
 <ul>
 <li><strong>event</strong> <code>String</code></li>
 <li><strong>callback</strong> <code>Function</code></li>
 </ul>
-<p>Attach a one-time only listener for an event.</p>
+<p>监听一次性消息。</p>
 <h3 id="vm-$off(_[event,_callback]_)">vm.$off( [event, callback] )</h3>
 <ul>
 <li><strong>event</strong> <code>String</code> <em>optional</em></li>
 <li><strong>callback</strong> <code>Function</code> <em>optional</em></li>
 </ul>
-<p>If no arguments are given, stop listening for all events; if only the event is given, remove all callbacks for that event; if both event and callback are given, remove that specific callback only.</p>
+<p>如果没有参数，就挺直接监听一切消息；如果只有消息给出，删除所有的回调函数；如果既有消息又有回调，就只删除指定的这个回调。</p>
 <h2 id="DOM">DOM</h2>
 <blockquote>
-<p>All vm DOM manipulation methods work like their jQuery counterparts - except they also trigger Vue.js transitions if there are any declared on vm’s <code>$el</code>. For more details on transitions see <a href="/guide/transitions.html">Adding Transition Effects</a>.</p>
+<p>所有的操作DOM的方法都和jQuery类似 - 除了还触发Vue.js在<code>$el</code>上定义的转化。更多转化的细节请看<a href="/guide/transitions.html">增加转化效果</a>.</p>
 </blockquote>
 <h3 id="vm-$appendTo(_element|selector,_[callback]_)">vm.$appendTo( element|selector, [callback] )</h3>
 <ul>
 <li><strong>element</strong> <code>HTMLElement</code> | <strong>selector</strong> <code>String</code></li>
 <li><strong>callback</strong> <code>Function</code> <em>optional</em></li>
 </ul>
-<p>Append the vm’s <code>$el</code> to target element. The argument can be either an element or a querySelector string.</p>
+<p>把vm的<code>$el</code>添加到目标元素上。参数可以是一个元素，也可以是一个选择器字符串。</p>
 <h3 id="vm-$before(_element|selector,_[callback]_)">vm.$before( element|selector, [callback] )</h3>
 <ul>
 <li><strong>element</strong> <code>HTMLElement</code> | <strong>selector</strong> <code>String</code></li>
 <li><strong>callback</strong> <code>Function</code> <em>optional</em></li>
 </ul>
-<p>Insert the vm’s <code>$el</code> before target element.</p>
+<p>在目标元素之前插入<code>$el</code>。</p>
 <h3 id="vm-$after(_element|selector,_[callback]_)">vm.$after( element|selector, [callback] )</h3>
 <ul>
 <li><strong>element</strong> <code>HTMLElement</code> | <strong>selector</strong> <code>String</code></li>
 <li><strong>callback</strong> <code>Function</code> <em>optional</em></li>
 </ul>
-<p>Insert the vm’s <code>$el</code> after target element.</p>
+<p>目标元素之后插入<code>$el</code>。</p>
 <h3 id="vm-$remove(_[callback]_)">vm.$remove( [callback] )</h3>
 <ul>
 <li><strong>callback</strong> <code>Function</code> <em>optional</em></li>
 </ul>
-<p>Remove the vm’s <code>$el</code> from the DOM.</p>
-<h2 id="Lifecycle">Lifecycle</h2>
+<p>从Dom中删除<code>$el</code>。</p>
+<h2 id="生命周期">生命周期</h2>
 <h3 id="vm-$mount(_[element|selector]_)">vm.$mount( [element|selector] )</h3>
 <ul>
 <li><strong>element</strong> <code>HTMLElement</code> | <strong>selector</strong> <code>String</code> <em>optional</em></li>
 </ul>
-<p>If the Vue instance didn’t get an <code>el</code> option at instantiation, you can manually call <code>$mount()</code> to assign an element to it and start the compilation. If no argument is provided, an empty <code>&lt;div&gt;</code> will be automatically created. Calling <code>$mount()</code> on an already mounted instance will have no effect. The method returns the instance itself so you can chain other instance methods after it.</p>
+<p>如果Vue实例在初始化的时候没有给<code>el</code>选项，你可以手动调用<code>$mount()</code>指定一个元素给它然后编译。如果没有参数提供，一个空的<code>&lt;div&gt;</code>将会自动被创建。在一个已经增加过的实例上调用<code>$mount</code>将会没效果。这个方法返回实例自己这样你就可以链式调用其他方法了。</p>
 <h3 id="vm-$destroy(_[remove]_)">vm.$destroy( [remove] )</h3>
 <ul>
 <li><strong>remove</strong> <code>Boolean</code> <em>optional</em></li>
 </ul>
-<p>Completely destroy a vm. Clean up its connections with other existing vms, unbind all its directives and remove its <code>$el</code> from the DOM. Also, all <code>$on</code> and <code>$watch</code> listeners will be automatically removed.</p>
+<p>完全删除VM。清除和其他存在的VS的关系，接触所有指示器的绑定，从DOM中删除<code>$el</code>。所有的<code>$on</code>和<code>$watch</code>监听都会自动被删除。</p>
 <h3 id="vm-$compile(_element_)">vm.$compile( element )</h3>
 <ul>
 <li><strong>element</strong> <code>HTMLElement</code></li>
 </ul>
-<p>Partially compile a piece of DOM (Element or DocumentFragment). The method returns a <code>decompile</code> function that tearsdown the directives created during the process. Note the decompile function does not remove the DOM. This method is exposed primarily for writing advanced custom directives.</p>
+<p>只编译DOM片段（元素或者文档段）。这个方法返回一个<code>decompile</code>函数，这个方法可以卸载这个过程创建的指示器。注意这个卸载方法不删除DOM。这个方法暴露给高级自定义指示器的写法。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!</div>
 </div>
