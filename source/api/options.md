@@ -1,16 +1,16 @@
-title: Options
+title: 选项
 type: api
 order: 2
 ---
 
-## Data
+## 数据
 
 ### data
 
 - **Type:** `Object | Function`
 - **Restricton:** Only accepts `Function` when used in `Vue.extend()`.
 
-The data object for the Vue instance. It can be accessed as `vm.$data`:
+Vue实例的数据对象，可以用`vm.$data`访问。
 
 ```js
 var data = { a: 1 }
@@ -20,7 +20,7 @@ var vm = new Vue({
 vm.$data === data // -> true
 ```
 
-The Vue instance will proxy access to all its properties, therefore you can manipulate the properties on the Vue instance and the changes get synced back to the actual data object:
+Vue实例将会代理访问它的所有属性，所以你可以在Vue实例上管理这些属性，然后这些改变会同步到实际的对象上：
 
 ```js
 vm.a   // -> 1
@@ -30,9 +30,9 @@ data.a = 3
 vm.a   // -> 3
 ```
 
-The object must be JSON-compliant (no circular references). You can use it just like an ordinary object, and it will look exactly the same when serialized with `JSON.stringify`. You can also share it between multiple Vue instances.
+对象必须是遵守JSON规范的（不包含环形引用）。你可以像普通对象一样使用它，你通过`JSON.stringify`串行化得到相同的值。你也可以在多个Vm实例间共享它。
 
-A special case here is when using the `data` option in `Vue.extend()`. Since we don't want nested objects to be shared by all instances created from that extended constructor, we must provide a function that returns a fresh copy of the default data:
+在`Vue.extend()`中使用`data`选项时，有一个特殊情况。因为你不想在继承的构造器里共享所有嵌套的对象，你必须提供一个函数来返回默认数据对象的一个拷贝。
 
 ``` js
 var MyComponent = Vue.extend({
@@ -47,15 +47,15 @@ var MyComponent = Vue.extend({
 })
 ```
 
-<p class="tip">Under the hood, Vue.js attaches a hidden property `__ob__` and recursively converts the object's enumerable properties into getters and setters to enable dependency collection. Properties with keys that starts with `$` or `_` are skipped.</p>
+<p class="tip">在背后，Vue.js附加一个隐藏的属性`__ob__`和转换数据的可枚举属性到gettersHe setters以便可以收集依赖。以`$`和`_`开头的将会被跳过。</p>
 
 ### methods
 
 - **Type:** `Object`
 
-Methods to be mixed into the Vue instance. You can access these methods directly on the VM instance, or use them in directive expressions. All methods will have their `this` context automatically bound to the Vue instance.
+混合进vue实例的方法，你可以直接访问VM实例上的方法，或者在表达式里面直接使用。每个函数的上下文关系`this`都绑定在Vue实例上。
 
-**Example:**
+**例子:**
 
 ```js
 var vm = new Vue({
@@ -74,7 +74,7 @@ vm.a // 2
 
 - **Type:** `Object`
 
-Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
+计算的属性也被包含进Vue实例。所有的getter和setters都有他们自己的`this`来自动绑定到Vue实例的上下文。
 
 **Example:**
 
@@ -105,11 +105,11 @@ vm.aDouble // -> 4
 
 ### paramAttributes
 
-- **Type:** `Array`
+- **类别:** `Array`
 
-An array of attribute names to be set on the Vue instance as initial data. Useful when passing data to a component.
+设置在Vue实例上的属性名称的一个数组作为初始数据。给一个组件传递值的时候是很有用的。
 
-**Example:**
+**例子:**
 
 ``` js
 Vue.component('param-demo', {
@@ -125,154 +125,153 @@ Vue.component('param-demo', {
 <param-demo size="100" message="hello!"></param-demo>
 ```
 
-Param attributes can also contain interpolation tags. The interpolation will be evaluated against the parent, and under the hood they will be compiled as [`v-with`](/api/directives.html#v-with), which means when the value of the interpolated expression changes, the component's corresponding property will also be updated:
+参数属性可以包含插入标签。这个插入将不在父对象的环境计算，而是在[`v-with`](/api/directives.html#v-with)之下计算，这就意味着如果插入表达式修改了，组件相关联的属性也会被更新：
 
 ``` html
 <param-demo message="{&#123;parentMessage&#125;}"></param-demo>
 ```
 
-There are some special cases when using `paramAttributes` with attributes that contains hyphens:
+当使用带连字符的属性的`paramAttributes`有个特殊情况：
 
-1. If the attribute is a data attribute, the `data-` prefix will be auto stripped;
+1. 如果属性是一个数据属性，`data-`前缀会自动去掉；
 
-2. If the attribute still contains dashes, it will be camelized. This is because it's inconvenient to access top level properties containing dashes in templates: the expression `my-param` will be parsed as a minus expression unless you use the awkward `this['my-param']` syntax.
+2. 如果属性还包含破折号，它将会被驼峰化，这是因为在模板中访问带破折号的顶级属性是不方便的：表达式`my-param`将会解析成一个减法操作的表达式除非你使用这种语法`this['my-param']`。
 
-This means a param attribute `data-hello` will be set on the vm as `vm.hello`; And `my-param` will be set as `vm.myParam`.
+这意味着一个参数属性`data-hello`将会被设置在vm的`vm.hello`对象上；然后`my-param`将会变成`vm.myParam`。
 
 ## DOM
 
 ### el
 
-- **Type:** `String | HTMLElement | Function`
-- **Restriction:** only accepts type `Function` when used in `Vue.extend()`.
+- **类别:** `String | HTMLElement | Function`
+- **限制:** 使用`Vue.extend()`时只接受`Funciton`类型。
 
-Provide the Vue instance with an existing DOM element. It can be a CSS selector string, an actual HTMLElement, or a function that returns an HTMLElement. The resolved element will be accessible as `vm.$el`.
+给Vue实例提供一个已存在的DOM元素。它可以是一个CSS选择器字符串，一个真正的html元素，或者一个返回一个html元素的函数。这个值将会用`vm.$el`访问。
 
-When used in `Vue.extend`, a function must be provided so each instance gets a separately created element.
+当使用`Vue.extend`，一个函数必须被提供，这样每个实例可以单独的创建元素。
 
-If the option is available at instantiation, the instance will immediately enter compilation; otherwise, the user will have to explicitly call `vm.$mount()` to manually start the compilation.
+如果是在一个插入表达式里面，这个实例将会立刻进入编译；否则，用户必须手动的通过`vm.$mount()`来启动编译。
 
 ### template
 
-- **Type:** `String`
+- **类别:** `String`
 
-A string template to be inserted into `vm.$el`. Any existing markup inside `vm.$el` will be overwritten, unless [content insertion points](/guide/components.html#Content_Insertion) are present in the template. If the **replace** option is `true`, the template will replace `vm.$el` entirely.
+将会被插入到`vm.$el`的字符串模板。任何在`vm.$el`内的标示符都会被覆盖，除非这个模板中有[内容插入点](/guide/components.html#Content_Insertion)。如果选项**replace**设置成`true`，模板将会完全的替换`vm.$el`。
 
-If it starts with `#` it will be used as a querySelector and use the selected element's innerHTML and the template string. This allows the use of the common `<script type="x-template">` trick to include templates.
+如果以`#`开头，它将会被当成是一个选择器然后使用选择出来的元素的innerHTML作为模板字符串。这允许使用普通的`<script type="x-template">`来包含模板。
 
-<p class="tip">Vue.js uses DOM-based templating. The compiler walks through DOM elements and looks for directives and creates data bindings. This means all Vue.js templates are parsable HTML that can be converted into actual DOM elements by the browser. Vue.js converts string templates into DOM fragments so they can be cloned when creating more Vue instances. If you want your templates to be valid HTML, you can configure the directive prefix to start with `data-`.</p>
+<p class="tip">Vue.js使用基于Dom的模板。编译器遍历DOM元素去寻找指示器然后创建绑定。这意味着所有的Vue.js模板是可以被浏览器解析成实际的DOM元素的html Vue.js把模板字符串转换成DOM片段这样它可以在创建更多的Vue实例的时候通过克隆来完成，如果你想你的模板是有效的html， 你可以通过配置指示器前缀为`data-`来达到。</p>
 
 ### replace
 
-- **Type:** `Boolean`  
-- **Default:** `false`
-- **Restriction:** only respected if the **template** option is also present.
+- **类别:** `Boolean`  
+- **默认:** `false`
+- **限制:** 当**template**有效的时候有效。
 
-Whether to replace the original `vm.$el` with the template's content instead of appending to it.
+是否用模板内容替换原始的`vm.$el`。
 
-## Lifecycle
+## 生命周期
 
-All lifecycle hooks have their `this` context bound to the Vue instance they belong to. The Vue instance will also fire corresponding events for each hook in the form of `"hook:<hookName>"`. e.g. for `created`, a `"hook:created"` event will be fired.
+所有的生命周期钩子的`this`都绑定到它的Vue实例上。Vue实例将会为每一个`"hook:<hookName>"`形式的钩子触发相关的事件。例如为`created`触发一个`hook:created`。
 
 ### created
 
 - **Type:** `Function`
 
-Called synchronously after the instance is created. At this stage, the instance has finished processing the options which means the following have been set up: data observation, computed properties, methods, watch/event callbacks. However, DOM compilation has not been started, and the `$el` property will not be available yet.
+在实例被创建的时候同步调用。在这个阶段，实例完成了包含以下内容的预处理：数据健康，计算属性，方法，监控事件回调。然而，dom编译还没开始，`$el`还没有效。
 
 ### beforeCompile
 
 - **Type:** `Function`
 
-Called right before the compilation starts.
+在编译之前调用。
 
 ### compiled
 
 - **Type:** `Function`
 
-Called after the compilation is finished. At this stage all directives have been linked so data changes will trigger DOM updates. However, `$el` is not guaranteed to have been inserted into the document yet.
-
+编译完成后调用，在这个阶段，所有的指示器都绑定成功，所以数据变化将会触发DOM更新。然而，`$el`不保证已经插入到文档中了。
 ### ready
 
 - **Type:** `Function`
 
-Called after compilation **and** the `$el` is **inserted into the document for the first time**. Note this insertion must be executed via Vue (with methods like `vm.$appendTo()` or as a result of a directive update) to trigger the `ready` hook.
+当完成编译**而且**`$el`也第一次的插入到文档中了之后调用。注意这个插入必须要通过Vue完成的(通过例如`vm.$appendTo()`的方法或者是一个指示器更新的结果)来触发的`ready`钩子。
 
 ### attached
 
 - **Type:** `Function`
 
-Called when `vm.$el` is attached to DOM by a directive or a VM instance method such as `$appendTo()`. Direct manipulation of `vm.$el` will **not** trigger this hook.
+当`vm.$el`被指示器或者vm实例方法如`$appendTo()`调用插入到DOM中时调用。直接操作`vm.$el`不会触发这个钩子。
 
 ### detached
 
 - **Type:** `Function`
 
-Called when `vm.$el` is removed from the DOM by a directive or a VM instance method. Direct manipulation of `vm.$el` will **not** trigger this hook.
+当指示器或者vm实例方法调用从DOM中删除时调用。直接操作`vm.$el`不会触发这个钩子。
 
 ### beforeDestroy
 
 - **Type:** `Function`
 
-Called right before a Vue instance is destroyed. At this stage the instance is still fully functional.
+在Vue实例销毁之前调用。在这个阶段这个实例还是有完整的功能的。
 
 ### destroyed
 
 - **Type:** `Function`
 
-Called after a Vue instance has been destroyed. When this hook is called, all bindings and directives of the Vue instance have been unbound and all child Vue instances have also been destroyed.
+当一个Vue实例已经被销毁之后调用。当这个钩子被调用所有的指示器绑定已经解绑，所有的子Vue实例已经被销毁。
 
-Note if there is a leaving transition, the `destroyed` hook is called **after** the transition has finished.
+注意如果有一个leaving变化，`destroyed`狗仔在变化完成**之后**调用。
 
 ## Assets
 
-These are private assets that will be available only to this Vue instance and its children during compilation.
+这里有一些Vue实例和它的子实例在编译期有效的私有的资源。
 
 ### directives
 
 - **Type:** `Object`
 
-A hash of directives to be made available to the Vue instance. For details on how to write a custom directive, see [Writing Custom Directives](/guide/custom-directive.html).
+对Vue实例有效的指示器的哈希。更多怎么写一个自定义的指示器看[写自定义的指示器](/guide/custom-directive.html)。
 
 ### filters
 
 - **Type:** `Object`
 
-A hash of filters to be made available to the Vue instance. For details on how to write a custom filter, see [Writing Custom Filters](/guide/custom-filter.html).
+对Vue实例有效的过滤器的哈希。更多怎么写一个自定义的过滤器，请看[写自定义的过滤器](/guide/custom-filter.html)。
 
 ### components
 
 - **Type:** `Object`
 
-A hash of components to be made available to the Vue instance. For details on how to extend and compose Vue instances, see [Component System](/guide/components.html).
+对Vue实例有效的组件的哈希。更多怎么扩展一个组件看[组件系统](/guide/components.html)。
 
 ### partials
 
 - **Type:** `Object`
 
-A hash of partials to be made available to the Vue instance. Also see [v-partial](/api/directives.html#v-partial).
+对Vue实例有效的片段的哈希。请看[v-partial](/api/directives.html#v-partial)。
 
 ### transitions
 
 - **Type:** `Object`
 
-A hash of transitions to be made available to the Vue instance. For details see the guide on [Transitions](/guide/transitions.html).
+对Vue实例有效的转化的一个实例。更多细节看入门[转变](/guide/transitions.html)。
 
 ## Others
 
 ### inherit
 
-- **Type:** `Boolean`
-- **Default:** `false`
+- **类别:** `Boolean`
+- **默认:** `false`
 
-Whether to inherit parent scope data. Set it to `true` if you want to create a component that inherits parent scope. When `inherit` is set to `true`, you can:
+是否继承父的上下文数据。如果你想创建一个继承父上下文数据的设置成`true`。当`inherit`设置成`true`的时候你可以：
 
-1. Bind to parent scope properties in the component template;
-2. Directly access parent properties on the component instance itself, via prototypal inheritance.
+1. 把父上下文属性绑定到组件模板里；
+2. 在组件实例里直接访问父属性，通过原型继承。
 
-One important thing to know when using `inherit: true` is that **the child can also set parent properties**, because all Vue instance data properties are getter/setters.
+当使用`inherit: true`时有一件很重要的事情是**子可以设置父属性**，因为虽有的vue实例属性是getter/setters。
 
-**Example:**
+**例子:**
 
 ``` js
 var parent = new Vue({
@@ -292,9 +291,9 @@ parent.a // -> 2
 
 ### events
 
-An object where keys are events to listen for and values are the corresponding callbacks. Note these are Vue events rather than DOM events. The value can also be a string of a method name. The Vue instance will call `$on()` for each entry in the object at instantiation.
+一个对象键是监听的时间，值是相关的回调函数。注意这里的Vue事件不是DOM事件。值也可以是一个方法名。vue实例将会为实例中的每个对象调用`$on()`。
 
-**Example:**
+**例子:**
 
 ``` js
 var vm = new Vue({
@@ -322,9 +321,9 @@ vm.$emit('bye')             // -> goodbye!
 
 - **Type**: `Object`
 
-An object where keys are expressions to watch and values are the corresponding callbacks. The value can also be a string of a method name. The Vue instance will call `$watch()` for each entry in the object at instantiation.
+对象键是监控的对象，值是对应的回调函数。值可以是方法名。Vue实例将会为实例中每个对象调用`$watch()`。
 
-**Example:**
+**例子:**
 
 ``` js
 var vm = new Vue({
@@ -344,9 +343,9 @@ vm.a = 2 // -> new: 2, old: 1
 
 - **Type**: `Array`
 
-The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options just like normal instance objects, and they will be merged against the eventual options using the same option merging logic in `Vue.extend()`. e.g. If your mixin contains a created hook and the component itself also has one, both functions will be called.
+`mixins`选项棘手一个混入的对象。这些混入的对象可以像包含普通对象一样包含一个实例对象，根据最后的选项合并使用的合并逻辑和`Vue.extend()`一样。例如如果你混入的对象包含一个创建的钩子然后这个组件也有一个。两个函数将都会被调用。
 
-**Example:**
+**例子:**
 
 ``` js
 var mixin = {
@@ -362,12 +361,12 @@ var vm = new Vue({
 
 ### name
 
-- **Type**: `String`
-- **Restrctions:** only respected when used in `Vue.extend()`.
+- **类别**: `String`
+- **限制:** 在 `Vue.extend()`中使用.
 
-When inspecting an extended Vue component in the console, the default constructor name is `VueComponent`, which isn't very informative. By passing in an optional `name` option to `Vue.extend()`, you will get a better inspection output so that you know which component you are looking at. The string will be camelized and used as the component's constructor name.
+在控制台检查一个扩展的Vue组件的时候，默认的构造函数的名字是`VueComponent`，这不是很有意义。传递一个`name`参数给`Vue.extend()`，你将会得到一个更好的检查输出，你可以知道你正在看哪个组件。这个字符串将会被驼峰化并作为组件的构造函数的名字使用。
 
-**Example:**
+**例子:**
 
 ``` js
 var Ctor = Vue.extend({

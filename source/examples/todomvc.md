@@ -3,7 +3,7 @@ type: examples
 order: 7
 ---
 
-> This is a fully spec-compliant TodoMVC implementation in under 120 effective lines of JavaScript (excluding comments and blank lines).
+> 这个例子是一个完整的TodoMVC的时间，只有120行有效的代码。(除了空行和注释)。
 
 <iframe width="100%" height="500" src="todomvc/index.html" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
