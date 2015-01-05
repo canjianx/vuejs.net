@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -62,7 +61,7 @@
             
                 <li><a href="/api/global-api.html" class="sidebar-link">全局 API</a></li>
             
-                <li><a href="/api/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/api/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/api/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -145,7 +144,7 @@
 </ul>
 <p>将会被插入到<code>vm.$el</code>的字符串模板。任何在<code>vm.$el</code>内的标示符都会被覆盖，除非这个模板中有<a href="/guide/components.html#Content_Insertion">内容插入点</a>。如果选项<strong>replace</strong>设置成<code>true</code>，模板将会完全的替换<code>vm.$el</code>。</p>
 <p>如果以<code>#</code>开头，它将会被当成是一个选择器然后使用选择出来的元素的innerHTML作为模板字符串。这允许使用普通的<code>&lt;script type=&quot;x-template&quot;&gt;</code>来包含模板。</p>
-<p class="tip">Vue.js使用基于Dom的模板。编译器遍历DOM元素去寻找指示器然后创建绑定。这意味着所有的Vue.js模板是可以被浏览器解析成实际的DOM元素的html Vue.js把模板字符串转换成DOM片段这样它可以在创建更多的Vue实例的时候通过克隆来完成，如果你想你的模板是有效的html， 你可以通过配置指示器前缀为<code>data-</code>来达到。</p>
+<p class="tip">Vue.js使用基于Dom的模板。编译器遍历DOM元素去寻找指令(Directives)然后创建绑定。这意味着所有的Vue.js模板是可以被浏览器解析成实际的DOM元素的html Vue.js把模板字符串转换成DOM片段这样它可以在创建更多的Vue实例的时候通过克隆来完成，如果你想你的模板是有效的html， 你可以通过配置指令(Directives)前缀为<code>data-</code>来达到。</p>
 
 <h3 id="replace">replace</h3>
 <ul>
@@ -170,22 +169,22 @@
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
 </ul>
-<p>编译完成后调用，在这个阶段，所有的指示器都绑定成功，所以数据变化将会触发DOM更新。然而，<code>$el</code>不保证已经插入到文档中了。</p>
+<p>编译完成后调用，在这个阶段，所有的指令(Directives)都绑定成功，所以数据变化将会触发DOM更新。然而，<code>$el</code>不保证已经插入到文档中了。</p>
 <h3 id="ready">ready</h3>
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
 </ul>
-<p>当完成编译<strong>而且</strong><code>$el</code>也第一次的插入到文档中了之后调用。注意这个插入必须要通过Vue完成的(通过例如<code>vm.$appendTo()</code>的方法或者是一个指示器更新的结果)来触发的<code>ready</code>钩子。</p>
+<p>当完成编译<strong>而且</strong><code>$el</code>也第一次的插入到文档中了之后调用。注意这个插入必须要通过Vue完成的(通过例如<code>vm.$appendTo()</code>的方法或者是一个指令(Directives)更新的结果)来触发的<code>ready</code>钩子。</p>
 <h3 id="attached">attached</h3>
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
 </ul>
-<p>当<code>vm.$el</code>被指示器或者vm实例方法如<code>$appendTo()</code>调用插入到DOM中时调用。直接操作<code>vm.$el</code>不会触发这个钩子。</p>
+<p>当<code>vm.$el</code>被指令(Directives)或者vm实例方法如<code>$appendTo()</code>调用插入到DOM中时调用。直接操作<code>vm.$el</code>不会触发这个钩子。</p>
 <h3 id="detached">detached</h3>
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
 </ul>
-<p>当指示器或者vm实例方法调用从DOM中删除时调用。直接操作<code>vm.$el</code>不会触发这个钩子。</p>
+<p>当指令(Directives)或者vm实例方法调用从DOM中删除时调用。直接操作<code>vm.$el</code>不会触发这个钩子。</p>
 <h3 id="beforeDestroy">beforeDestroy</h3>
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
@@ -195,7 +194,7 @@
 <ul>
 <li><strong>Type:</strong> <code>Function</code></li>
 </ul>
-<p>当一个Vue实例已经被销毁之后调用。当这个钩子被调用所有的指示器绑定已经解绑，所有的子Vue实例已经被销毁。</p>
+<p>当一个Vue实例已经被销毁之后调用。当这个钩子被调用所有的指令(Directives)绑定已经解绑，所有的子Vue实例已经被销毁。</p>
 <p>注意如果有一个leaving变化，<code>destroyed</code>狗仔在变化完成<strong>之后</strong>调用。</p>
 <h2 id="Assets">Assets</h2>
 <p>这里有一些Vue实例和它的子实例在编译期有效的私有的资源。</p>
@@ -203,7 +202,7 @@
 <ul>
 <li><strong>Type:</strong> <code>Object</code></li>
 </ul>
-<p>对Vue实例有效的指示器的哈希。更多怎么写一个自定义的指示器看<a href="/guide/custom-directive.html">写自定义的指示器</a>。</p>
+<p>对Vue实例有效的指令(Directives)的哈希。更多怎么写一个自定义的指令(Directives)看<a href="/guide/custom-directive.html">写自定义的指令(Directives)</a>。</p>
 <h3 id="filters">filters</h3>
 <ul>
 <li><strong>Type:</strong> <code>Object</code></li>

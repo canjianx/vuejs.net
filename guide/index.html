@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link current">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -145,7 +144,7 @@
 <p>现在，在div的文字内容被更新之前，<code>message</code>的值将会首先通过<code>capitalize</code>函数，更多内容看<a href="/guide/filters.html">深入过滤器</a>.</p>
 <h3 id="组件">组件</h3>
 <p>In Vue.js, every component is simply a Vue instance. Components form a nested tree-like hierarchy that represents your application interface. They can be instantiated by a custom constructor returned from <code>Vue.extend</code>, but a more declarative approach is registering them with <code>Vue.component(id, constructor)</code>. Once registered, they can be declaratively nested in other Vue instance’s templates with the <code>v-component</code> directive:</p>
-<p>在vue.js，每个组件都是一个简单的Vue实例。组件形成的嵌套的树状继承结结构正好显示了你的程序接口。他们可以被从<code>Vue.extend</code>返回的自定义的构造函数实例化，但是更有说明性的方法是使用<code>Vue.component(id, constructoor</code>来注册他们，他们可以通过<code>v-compoent</code>指示器嵌套到别的Vue实例模板中。</p>
+<p>在vue.js，每个组件都是一个简单的Vue实例。组件形成的嵌套的树状继承结结构正好显示了你的程序接口。他们可以被从<code>Vue.extend</code>返回的自定义的构造函数实例化，但是更有说明性的方法是使用<code>Vue.component(id, constructoor</code>来注册他们，他们可以通过<code>v-compoent</code>指令(Directives)嵌套到别的Vue实例模板中。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"my-component"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- internals handled by my-component --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>这种简单的机制可以说性的重用，而且可以类似<a href="http://www.w3.org/TR/components-intro/" target="_blank" rel="external">Web 组件</a>来构造Vue实例，不需要最新的浏览器或者重型的填充。通过把一个程序分割层一些小的组件，结果是一个高度解耦和可管理的代码基。更多细节看<a href="/guide/components.html">组件系统</a></p>
@@ -179,7 +178,7 @@ var demo = new Vue({
 
 <p>也可以在<a href="http://jsfiddle.net/yyx990803/yMv7y/" target="_blank" rel="external">jsfiddle</a>看。</p>
 <p>你可以点击一个Todo去触发，你也可以打开你的浏览器控制台，通过<code>demo</code>对象来玩一玩，比如修改<code>demo.title</code>，往<code>demo.todos</code>增加一个新的对象，或者触发一个todo的<code>done</code>状态。</p>
-<p>你可能在脑海中有一些问题了，不要担心，我们将会很快解释它。下一节<a href="/guide/directives.html">深入指示器</a></p>
+<p>你可能在脑海中有一些问题了，不要担心，我们将会很快解释它。下一节<a href="/guide/directives.html">深入指令(Directives)</a></p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!
         <!-- Site Meter -->

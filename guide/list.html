@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -89,7 +88,7 @@
 
 <div class="content guide with-sidebar">
     <h1>显示一个列表</h1>
-    <p>你可以使用<code>v-repeat</code>指示器基于VM对象上的数组去重复一个模板元素。为数组中的每个对象，指示器都会创建一个子Vue实例使用这个对象作为它自己的<code>$data</code>对象。这些子实例继承了父元素的所有数据，所以在可重复的元素中你可以既访问重复的实例的属性和父实例的属性。另外，你可以访问一个<code>$index</code>属性，它和数组中对应的渲染实例的索引对应。</p>
+    <p>你可以使用<code>v-repeat</code>指令(Directives)基于VM对象上的数组去重复一个模板元素。为数组中的每个对象，指令(Directives)都会创建一个子Vue实例使用这个对象作为它自己的<code>$data</code>对象。这些子实例继承了父元素的所有数据，所以在可重复的元素中你可以既访问重复的实例的属性和父实例的属性。另外，你可以访问一个<code>$index</code>属性，它和数组中对应的渲染实例的索引对应。</p>
 <p><strong>例子:</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"items"</span> <span class="attribute">class</span>=<span class="value">"item-{&#123;$index&#125;}"</span>&gt;</span></div><div class="line">    {&#123;$index&#125;} - {&#123;parentMsg&#125;} {&#123;childMsg&#125;}</div><div class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
@@ -132,7 +131,7 @@ new Vue({
 </script>
 
 <h2 id="使用标示符">使用标示符</h2>
-<p>有些时候我们可能想访问更精确的值而不是模糊的到父范围。你可以提供一个参数给<code>v-repeat</code>指示器来做这件事。把它当成一个标示符：</p>
+<p>有些时候我们可能想访问更精确的值而不是模糊的到父范围。你可以提供一个参数给<code>v-repeat</code>指令(Directives)来做这件事。把它当成一个标示符：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"users"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- think of this as "for each user in users" --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">v-repeat</span>=<span class="value">"user: users"</span>&gt;</span></div><div class="line">    {&#123;user.name&#125;} - {&#123;user.email&#125;}</div><div class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
 

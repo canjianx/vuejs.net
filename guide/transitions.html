@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -90,7 +89,7 @@
 <div class="content guide with-sidebar">
     <h1>转变</h1>
     <p>通过Vue.js的转变系统，你可以在元素插入和删除时应用自动转变效果。这里有两个选项要做：通过转变/动画定义css类，或者注册一个定义了自定义javascript钩子函数的对象。</p>
-<p>使用<code>v-transition=&quot;my-transition&quot;</code>指示器，Vue将会：</p>
+<p>使用<code>v-transition=&quot;my-transition&quot;</code>指令(Directives)，Vue将会：</p>
 <ol>
 <li><p>试着找通过<code>Vue.transition(id, def)</code>注册的javascript转变<strong>定义</strong>，或者传递一个<code>transitions</code>选项，通过<code>my-transition</code>的id。如果发现，将会使用这个<strong>定义</strong> </p>
 </li>
@@ -99,7 +98,7 @@
 <li><p>如果没有指定转变和动画，DOM管理将会在下一帧中执行。</p>
 </li>
 </ol>
-<p class="tip">所以的Vue.js转变都只会vue.js管理的Dom操作中触发, 即使是内建的指示器, 例如 <code>v-if</code>, 或者内建的方法, 例如 <code>vm.$appendTo()</code>.</p>
+<p class="tip">所以的Vue.js转变都只会vue.js管理的Dom操作中触发, 即使是内建的指令(Directives), 例如 <code>v-if</code>, 或者内建的方法, 例如 <code>vm.$appendTo()</code>.</p>
 
 
 <h2 id="CSS_转变">CSS 转变</h2>
@@ -134,7 +133,7 @@ new Vue({
 })
 </script>
 
-<p>这些类的切换基于你的<code>v-transition</code>指示器。在<code>v-transition=&quot;fade&quot;</code>的例子中，这个类将会在<code>.fade-enter</code>和<code>.fade-leave</code>间切换。当没有提供值，它们默认的将会是<code>.v-enter</code>和<code>.v-leave</code>。</p>
+<p>这些类的切换基于你的<code>v-transition</code>指令(Directives)。在<code>v-transition=&quot;fade&quot;</code>的例子中，这个类将会在<code>.fade-enter</code>和<code>.fade-leave</code>间切换。当没有提供值，它们默认的将会是<code>.v-enter</code>和<code>.v-leave</code>。</p>
 <p>When the <code>show</code> property changes, Vue.js will insert or remove the <code>&lt;p&gt;</code> element accordingly, and apply transition classes as specified below:</p>
 <p>当<code>show</code>属性改变，vue.js将会插入删除<code>&lt;p&gt;</code>，然后像下面应用转变类：</p>
 <ul>

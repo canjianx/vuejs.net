@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -62,7 +61,7 @@
             
                 <li><a href="/api/global-api.html" class="sidebar-link">全局 API</a></li>
             
-                <li><a href="/api/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/api/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/api/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -129,7 +128,7 @@
 <ul>
 <li><strong>templateString</strong> <code>String</code></li>
 </ul>
-<p>计算包含大括号插入的模板字符串片段。注意这个方法只对字符串插入符有效；属性指示器不会被编译。</p>
+<p>计算包含大括号插入的模板字符串片段。注意这个方法只对字符串插入符有效；属性指令(Directives)不会被编译。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// assuming vm.msg = 'hello'</span></div><div class="line">vm.$interpolate(<span class="string">'{&#123;msg&#125;} world!'</span>) <span class="comment">// -&gt; 'hello world!'</span></div></pre></td></tr></table></figure>
 
 <h3 id="vm-$log(_[keypath]_)">vm.$log( [keypath] )</h3>
@@ -216,12 +215,12 @@
 <ul>
 <li><strong>remove</strong> <code>Boolean</code> <em>optional</em></li>
 </ul>
-<p>完全删除VM。清除和其他存在的VS的关系，接触所有指示器的绑定，从DOM中删除<code>$el</code>。所有的<code>$on</code>和<code>$watch</code>监听都会自动被删除。</p>
+<p>完全删除VM。清除和其他存在的VS的关系，接触所有指令(Directives)的绑定，从DOM中删除<code>$el</code>。所有的<code>$on</code>和<code>$watch</code>监听都会自动被删除。</p>
 <h3 id="vm-$compile(_element_)">vm.$compile( element )</h3>
 <ul>
 <li><strong>element</strong> <code>HTMLElement</code></li>
 </ul>
-<p>只编译DOM片段（元素或者文档段）。这个方法返回一个<code>decompile</code>函数，这个方法可以卸载这个过程创建的指示器。注意这个卸载方法不删除DOM。这个方法暴露给高级自定义指示器的写法。</p>
+<p>只编译DOM片段（元素或者文档段）。这个方法返回一个<code>decompile</code>函数，这个方法可以卸载这个过程创建的指令(Directives)。注意这个卸载方法不删除DOM。这个方法暴露给高级自定义指令(Directives)的写法。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!
         <!-- Site Meter -->

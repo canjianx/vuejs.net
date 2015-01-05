@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -89,7 +88,7 @@
 
 <div class="content guide with-sidebar">
     <h1>监听消息</h1>
-    <p>你可以使用<code>v-on</code>指示器来绑定DOM事件的监听。它可以绑定到一个事件处理函数上，（不带调用括号的）或者内嵌表达式。如果提供了一个处理函数，它将会得到原始的DOM事件作为参数。这个事件对象增加了一个特殊的属性<code>targetVM</code>，指向触发这个时间的VM对象。</p>
+    <p>你可以使用<code>v-on</code>指令(Directives)来绑定DOM事件的监听。它可以绑定到一个事件处理函数上，（不带调用括号的）或者内嵌表达式。如果提供了一个处理函数，它将会得到原始的DOM事件作为参数。这个事件对象增加了一个特殊的属性<code>targetVM</code>，指向触发这个时间的VM对象。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on</span>=<span class="value">"click: onClick"</span>&gt;</span>Trigger a handler<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-on</span>=<span class="value">"click: n++"</span>&gt;</span>Trigger an expression<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 
@@ -112,7 +111,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* ... */</span></div><div class="line">{</div><div class="line">  methods: {</div><div class="line">    submit: <span class="function"><span class="keyword">function</span> <span class="params">(msg, e)</span> </span>{</div><div class="line">      e.stopPropagation()</div><div class="line">    }</div><div class="line">  }</div><div class="line">}</div><div class="line"><span class="comment">/* ... */</span></div></pre></td></tr></table></figure>
 
 <h2 id="key过滤器"><code>key</code>过滤器</h2>
-<p>当你监听键盘消息时，我们常常需要检查键码。Vue.js提供了一个特殊的<code>key</code>过滤器，只和<code>v-on</code>指示器一起使用。它只带一个键码的参数。</p>
+<p>当你监听键盘消息时，我们常常需要检查键码。Vue.js提供了一个特殊的<code>key</code>过滤器，只和<code>v-on</code>指令(Directives)一起使用。它只带一个键码的参数。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- only call vm.submit() when the keyCode is 13 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">v-on</span>=<span class="value">"keyup:submit | key 13"</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>它还有几个预设的键码：</p>

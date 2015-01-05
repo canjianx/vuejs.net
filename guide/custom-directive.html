@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>自定义指示器 - vue.js</title>
+        <title>自定义指令(Directives) - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link current">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link current">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -88,13 +87,13 @@
 </div>
 
 <div class="content guide with-sidebar">
-    <h1>自定义指示器</h1>
+    <h1>自定义指令(Directives)</h1>
     <h2 id="基础">基础</h2>
-<p>Vue.js允许你注册自定义的指示器，实际上能让你接触到Vue是怎样把数据改变映射到DOM行为上。你可以用<code>Vue.directive(id, definition)</code>方法注册一个全局的自定义指示器，传入指示器id，和指示器对象。在指示器对象中可以提供几个钩子函数(全部的选项)：</p>
+<p>Vue.js允许你注册自定义的指令(Directives)，实际上能让你接触到Vue是怎样把数据改变映射到DOM行为上。你可以用<code>Vue.directive(id, definition)</code>方法注册一个全局的自定义指令(Directives)，传入指令(Directives)id，和指令(Directives)对象。在指令(Directives)对象中可以提供几个钩子函数(全部的选项)：</p>
 <ul>
-<li><strong>bind</strong>: 在指示器第一次绑定的时候调用一次。</li>
+<li><strong>bind</strong>: 在指令(Directives)第一次绑定的时候调用一次。</li>
 <li><strong>update</strong>: 当绑定的值改变的时候调用，新值作为参数提供。</li>
-<li><strong>unbind</strong>: 在指示器接触绑定的时候调用一次。</li>
+<li><strong>unbind</strong>: 在指令(Directives)接触绑定的时候调用一次。</li>
 </ul>
 <p><strong>例子</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'my-directive'</span>, {</div><div class="line">  bind: <span class="function"><span class="keyword">function</span> <span class="params">(value)</span> </span>{</div><div class="line">    <span class="comment">// do preparation work</span></div><div class="line">    <span class="comment">// e.g. add event listeners or expensive stuff</span></div><div class="line">    <span class="comment">// that needs to be run only once</span></div><div class="line">    <span class="comment">// `value` is the initial value</span></div><div class="line">  },</div><div class="line">  update: <span class="function"><span class="keyword">function</span> <span class="params">(value)</span> </span>{</div><div class="line">    <span class="comment">// do something based on the updated value</span></div><div class="line">    <span class="comment">// this will also be called for the initial value</span></div><div class="line">  },</div><div class="line">  unbind: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="comment">// do clean up work</span></div><div class="line">    <span class="comment">// e.g. remove event listeners added in bind()</span></div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
@@ -105,18 +104,18 @@
 <p>当你只需要<code>update</code>函数时，你只需要传递一个单独的函数，而非一个对象：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'my-directive'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(value)</span> </span>{</div><div class="line">  <span class="comment">// this function will be used as update()</span></div><div class="line">})</div></pre></td></tr></table></figure>
 
-<p>所有的钩子函数都会被拷贝到实际的<strong>指示器对象</strong>中，在这些函数中你可以使用<code>this</code>来访问上下文。指示器对象暴露了一些有用的属性：</p>
+<p>所有的钩子函数都会被拷贝到实际的<strong>指令(Directives)对象</strong>中，在这些函数中你可以使用<code>this</code>来访问上下文。指令(Directives)对象暴露了一些有用的属性：</p>
 <ul>
-<li><strong>el</strong>: 和指示器绑定的元素。</li>
-<li><strong>vm</strong>: 指示器的上下文环境。</li>
+<li><strong>el</strong>: 和指令(Directives)绑定的元素。</li>
+<li><strong>vm</strong>: 指令(Directives)的上下文环境。</li>
 <li><strong>expression</strong>: 绑定的表达式，不包含过滤器和参数。</li>
 <li><strong>arg</strong>: 参数，如果存在的话。</li>
 <li><strong>raw</strong>: 未解析的表达式。</li>
-<li><strong>name</strong>: 不带前缀的指示器的名字。</li>
+<li><strong>name</strong>: 不带前缀的指令(Directives)的名字。</li>
 </ul>
-<p class="tip">你应该把所有的指示器当成只读的而且避免修改它们。你可以给指示器对象增加自定义的属性，但是小心，不要覆盖已经存在的属性</p>
+<p class="tip">你应该把所有的指令(Directives)当成只读的而且避免修改它们。你可以给指令(Directives)对象增加自定义的属性，但是小心，不要覆盖已经存在的属性</p>
 
-<p>一个使用了一些属性的自定义指示器的例子：</p>
+<p>一个使用了一些属性的自定义指令(Directives)的例子：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span> <span class="attribute">v-demo</span>=<span class="value">"LightSlateGray : msg"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 
@@ -148,8 +147,8 @@ var demo = new Vue({
 })
 </script>
 
-<h2 id="字面量指示器">字面量指示器</h2>
-<p>当创建自定义指示器的时候你可以传递一个<code>isLiteral: true</code>，属性值将会被当成字符串字面量作为指示器的表达式。这个指示器将不会尝试去安装数据监控。</p>
+<h2 id="字面量指令(Directives)">字面量指令(Directives)</h2>
+<p>当创建自定义指令(Directives)的时候你可以传递一个<code>isLiteral: true</code>，属性值将会被当成字符串字面量作为指令(Directives)的表达式。这个指令(Directives)将不会尝试去安装数据监控。</p>
 <p>例子:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-literal-dir</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
@@ -160,19 +159,19 @@ var demo = new Vue({
 <h3 id="动态字面量">动态字面量</h3>
 <p>然而，当字面量中包含大括号，行为如下：</p>
 <ul>
-<li><p>指示器实例将有一个标记<code>this._isDynamicLiteral</code> 设置成 <code>true</code>;</p>
+<li><p>指令(Directives)实例将有一个标记<code>this._isDynamicLiteral</code> 设置成 <code>true</code>;</p>
 </li>
 <li><p>如果没有<code>update</code>函数，大括号里面的表达式将会被评估一次，并赋值给<code>this.expression</code>。没有数据监控发生。</p>
 </li>
-<li><p>如果有一个<code>update</code>函数，指示器<strong>将会</strong>设置数据监控，并且当数据发生变化是调用update.</p>
+<li><p>如果有一个<code>update</code>函数，指令(Directives)<strong>将会</strong>设置数据监控，并且当数据发生变化是调用update.</p>
 </li>
 </ul>
-<h2 id="双向指示器">双向指示器</h2>
-<p>如果你的指示器期望回写数据到Vue实例，你需要传递<code>twoWay: true</code>。这个属性允许在指示器内部使用<code>this.set(value)</code>。</p>
+<h2 id="双向指令(Directives)">双向指令(Directives)</h2>
+<p>如果你的指令(Directives)期望回写数据到Vue实例，你需要传递<code>twoWay: true</code>。这个属性允许在指令(Directives)内部使用<code>this.set(value)</code>。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'example'</span>, {</div><div class="line">  twoWay: <span class="literal">true</span>,</div><div class="line">  bind: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">this</span>.handler = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">      <span class="comment">// set data back to the vm.</span></div><div class="line">      <span class="comment">// If the directive is bound as v-example="a.b.c",</span></div><div class="line">      <span class="comment">// this will attempt to set `vm.a.b.c` with the</span></div><div class="line">      <span class="comment">// given value.</span></div><div class="line">      <span class="keyword">this</span>.set(<span class="keyword">this</span>.el.value)</div><div class="line">    }.bind(<span class="keyword">this</span>)</div><div class="line">    <span class="keyword">this</span>.el.addEventListener(<span class="string">'input'</span>, <span class="keyword">this</span>.handler)</div><div class="line">  },</div><div class="line">  unbind: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    <span class="keyword">this</span>.el.removeEventListener(<span class="string">'input'</span>, <span class="keyword">this</span>.handler)</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
 
 <h2 id="内部表达式">内部表达式</h2>
-<p>传递<code>acceptStatement: true</code>可以是你的自定义指示器像<code>v-on</code>一样接受内部表达式：</p>
+<p>传递<code>acceptStatement: true</code>可以是你的自定义指令(Directives)像<code>v-on</code>一样接受内部表达式：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-my-directive</span>=<span class="value">"a++"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 
@@ -180,9 +179,9 @@ var demo = new Vue({
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Vue.directive(<span class="string">'my-directive'</span>, {</div><div class="line">  acceptStatement: <span class="literal">true</span>,</div><div class="line">  update: <span class="function"><span class="keyword">function</span> <span class="params">(fn)</span> </span>{</div><div class="line">    <span class="comment">// the passed in value is a function which when called,</span></div><div class="line">    <span class="comment">// will execute the "a++" statement in the owner vm's</span></div><div class="line">    <span class="comment">// scope.</span></div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
 
 <p>明确的使用这个，因为一般情况下你想要在你的模板中避免单边影响。</p>
-<h2 id="指示器优先级">指示器优先级</h2>
-<p>你可以选择性的为你的指示器提供一个优先级数字（默认是0）。在同一个元素上一个有高一点的优先级将会被处理的更早。相同优先级的会按照他们出现的顺序处理，但是这个顺序在不同的浏览器中不保证一样。</p>
-<p>你可以在<a href="/api/directives.html">API文档</a>中查看一些内部的指示器优先级。另外，<code>v-repeat</code>，<code>v-if</code>和<code>v-component</code>被视为”终结者指示器”在编译过程中他们拥有最高的优先级</p>
+<h2 id="指令(Directives)优先级">指令(Directives)优先级</h2>
+<p>你可以选择性的为你的指令(Directives)提供一个优先级数字（默认是0）。在同一个元素上一个有高一点的优先级将会被处理的更早。相同优先级的会按照他们出现的顺序处理，但是这个顺序在不同的浏览器中不保证一样。</p>
+<p>你可以在<a href="/api/directives.html">API文档</a>中查看一些内部的指令(Directives)优先级。另外，<code>v-repeat</code>，<code>v-if</code>和<code>v-component</code>被视为”终结者指令(Directives)”在编译过程中他们拥有最高的优先级</p>
 <p>接下来，我们将看看怎样<a href="/guide/custom-filter.html">写一个过滤器</a>。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!

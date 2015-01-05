@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>指示器 - vue.js</title>
+        <title>指令(Directives) - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -62,7 +61,7 @@
             
                 <li><a href="/api/global-api.html" class="sidebar-link">全局 API</a></li>
             
-                <li><a href="/api/directives.html" class="sidebar-link current">指示器</a></li>
+                <li><a href="/api/directives.html" class="sidebar-link current">指令(Directives)</a></li>
             
                 <li><a href="/api/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -72,26 +71,26 @@
 </div>
 
 <div class="content api with-sidebar">
-    <h1>指示器</h1>
-    <h2 id="反射指示器">反射指示器</h2>
+    <h1>指令(Directives)</h1>
+    <h2 id="反射指令(Directives)">反射指令(Directives)</h2>
 <blockquote>
-<p>这些指示器可以把它们自己绑定到Vue实例的一个属性上，或者绑定到一个实例上下文的一个表达式。当绑定的这个值改变，在下一帧到来时这些指示器的<code>update()</code>将会被调用。</p>
+<p>这些指令(Directives)可以把它们自己绑定到Vue实例的一个属性上，或者绑定到一个实例上下文的一个表达式。当绑定的这个值改变，在下一帧到来时这些指令(Directives)的<code>update()</code>将会被调用。</p>
 </blockquote>
 <h3 id="v-text">v-text</h3>
 <p>更新元素的 <code>textContent</code>.</p>
-<p>在文本节点内部, &#123;&#123; Mustache &#125;&#125; 也会被当成一个 <code>v-text</code> 指示器</p>
+<p>在文本节点内部, &#123;&#123; Mustache &#125;&#125; 也会被当成一个 <code>v-text</code> 指令(Directives)</p>
 <h3 id="v-html">v-html</h3>
 <p>更新元素的 <code>innerHTML</code>.</p>
 <p class="tip"><code>v-html</code>和用户提供的数据结合使用是危险的。推荐只有在你能肯定数据源安全的情况下才使用<code>v-html</code>，或者给它加一个自定义的过滤器来消除一些潜在的危害。</p>
 
 <h3 id="v-show">v-show</h3>
 <ul>
-<li>这个指示器可以触发转变。</li>
+<li>这个指令(Directives)可以触发转变。</li>
 </ul>
 <p>设置元素的css显示属性为<code>none</code>或者它原本的值，取决于它绑定的值。</p>
 <h3 id="v-class">v-class</h3>
 <ul>
-<li>这个指示器接受一个可选的参数。</li>
+<li>这个指令(Directives)接受一个可选的参数。</li>
 </ul>
 <p>如果没有参数，它将会把绑定的值加到元素的class列表，而且当值改变时更新这个class。</p>
 <p>如果提供了一个参数，这个参数将会根据绑定的值来决定class的值。和多子句结合是很有用的：</p>
@@ -99,18 +98,18 @@
 
 <h3 id="v-attr">v-attr</h3>
 <ul>
-<li>这个指示器需要一个参数</li>
+<li>这个指令(Directives)需要一个参数</li>
 </ul>
 <p>更新元素给定的属性（根据指定的参数）。</p>
 <p><strong>Example:</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">v-attr</span>=<span class="value">"width:w, height:h"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p>在内部，大括号插入的内容将会编译到计算过的<code>v-attr</code>指示器中。</p>
+<p>在内部，大括号插入的内容将会编译到计算过的<code>v-attr</code>指令(Directives)中。</p>
 <p class="tip">当设置<code>&lt;img&gt;</code>的<code>src</code>属性的时候你应该使用<code>v-attr</code>代替大括号绑定。你的模板在Vue.js编译之前被浏览器解析，所以当浏览器尝试获取一个图片的URL时大括号绑定将会导致一个404。</p>
 
 <h3 id="v-style">v-style</h3>
 <ul>
-<li>这个指示器接受一个可选参数。</li>
+<li>这个指令(Directives)接受一个可选参数。</li>
 </ul>
 <p>给元素应用内嵌的CSS样式。</p>
 <p>当没有元素的时候，Vue.js将会把值设置到<code>el.style.cssText</code>.</p>
@@ -128,16 +127,16 @@
 <li>需要一个参数。</li>
 <li>需要值是一个函数或者一个表达式。</li>
 </ul>
-<p>在元素上绑定一个消息。消息类别取决于参数。这个是唯一的可以和<code>key</code>过滤器结合使用的指示器。 更多信息请看<a href="/guide/events.html">监听事件</a>.</p>
+<p>在元素上绑定一个消息。消息类别取决于参数。这个是唯一的可以和<code>key</code>过滤器结合使用的指令(Directives)。 更多信息请看<a href="/guide/events.html">监听事件</a>.</p>
 <h3 id="v-model">v-model</h3>
 <ul>
-<li>这个指示器只能用在<code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> or <code>&lt;textarea&gt;</code> 这几个元素.</li>
+<li>这个指令(Directives)只能用在<code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> or <code>&lt;textarea&gt;</code> 这几个元素.</li>
 <li>参数: <code>lazy</code>, <code>number</code>, <code>options</code></li>
 </ul>
 <p>给表单的输入元素创建一个双向绑定。默认情况下数据在每个<code>input</code>消息中同步。例子的细节请看<a href="/guide/forms.html">处理表单</a>.</p>
 <h3 id="v-if">v-if</h3>
 <ul>
-<li>这个指示器可以触发转变。</li>
+<li>这个指令(Directives)可以触发转变。</li>
 </ul>
 <p>根据绑定的值有条件的插入或者删除一个元素。如果元素是<code>&lt;template&gt;</code>它的内容会作为一个条件块来提取。</p>
 <p><strong>例子:</strong></p>
@@ -152,7 +151,7 @@
 <li>要求值是数组或者对象。</li>
 <li>可以触发转变。</li>
 <li>接受一个可选参数。</li>
-<li>指示器参数: <code>trackby</code></li>
+<li>指令(Directives)参数: <code>trackby</code></li>
 </ul>
 <p>为每一个绑定到数组的项创建一个子VM对象。当修改方法调用的时候这些子VM对象将会被自动的创建和删除，例如数组中调用<code>push()</code>。</p>
 <p>如果没有提供参数，这个子VM对象将会直接使用数组中的元素作为它的<code>$data</code>。如果这个值不是一个对象，一个包装的数据对象将会被创建而且将会把值设置到一个名为<code>$value</code>的属性上。</p>
@@ -181,13 +180,13 @@
 <p>继承独立属性的例子 (使用相同的数据):</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">my-component</span> <span class="attribute">v-with</span>=<span class="value">"myName: user.name, myEmail: user.email"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- you can access properties with the new keys --&gt;</span></div><div class="line">  {&#123;myName&#125;} {&#123;myEmail&#125;}</div><div class="line"><span class="tag">&lt;/<span class="title">my-component</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<h2 id="字面量指示器">字面量指示器</h2>
+<h2 id="字面量指令(Directives)">字面量指令(Directives)</h2>
 <blockquote>
-<p>字面量指示器把他们的属性值当成纯文本；他们不尝试去把它们绑定到任何元素上。它们所做的事情是使用这个字符串值执行<code>bind()</code>函数。字面量指示器在它值里面接受大括号表达式，但是这个表达式只是在第一次编译的时候执行，也不会对数据变化作出反应。</p>
+<p>字面量指令(Directives)把他们的属性值当成纯文本；他们不尝试去把它们绑定到任何元素上。它们所做的事情是使用这个字符串值执行<code>bind()</code>函数。字面量指令(Directives)在它值里面接受大括号表达式，但是这个表达式只是在第一次编译的时候执行，也不会对数据变化作出反应。</p>
 </blockquote>
 <h3 id="v-component">v-component</h3>
 <ul>
-<li>指示器参数: <code>keep-alive</code></li>
+<li>指令(Directives)参数: <code>keep-alive</code></li>
 </ul>
 <p>用注册的组件作为子VM对象编译这个元素。可以使用<code>v-with</code>从父对象继承数据。更多信息请看<a href="/guide/components.html">组件系统</a>.</p>
 <h3 id="v-ref">v-ref</h3>
@@ -204,16 +203,16 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span>&#123;&#123;&gt; my-partial&#125;&#125;<span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h3 id="v-transition">v-transition</h3>
-<p>通知Vue.js应用转化到元素上。这个转化类将在某些转换触发指示器修改元素或者Vue实例的DOM操作方法调用时应用。</p>
+<p>通知Vue.js应用转化到元素上。这个转化类将在某些转换触发指令(Directives)修改元素或者Vue实例的DOM操作方法调用时应用。</p>
 <p>细节请看 <a href="/guide/transitions.html">转变指南</a>.</p>
-<h2 id="空指示器">空指示器</h2>
+<h2 id="空指令(Directives)">空指令(Directives)</h2>
 <blockquote>
-<p>空指示器不要求也会忽略他们的属性值。</p>
+<p>空指令(Directives)不要求也会忽略他们的属性值。</p>
 </blockquote>
 <h3 id="v-pre">v-pre</h3>
-<p>跳过这个元素以及子元素的编译。跳过大部分的没有指示器的节点可以提高编译速度。</p>
+<p>跳过这个元素以及子元素的编译。跳过大部分的没有指令(Directives)的节点可以提高编译速度。</p>
 <h3 id="v-cloak">v-cloak</h3>
-<p>这个属性一直保持到相关的VM对象完成编译。和一些CSS规则一起使用比如<code>[v-cloak] {display: none}</code>，这个指示器用来隐藏没有编译的大括号绑定直到VM准备好。</p>
+<p>这个属性一直保持到相关的VM对象完成编译。和一些CSS规则一起使用比如<code>[v-cloak] {display: none}</code>，这个指令(Directives)用来隐藏没有编译的大括号绑定直到VM准备好。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!
         <!-- Site Meter -->

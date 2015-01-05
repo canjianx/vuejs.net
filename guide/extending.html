@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -103,7 +102,7 @@
 <p>这里有几类典型的插件你可以写：</p>
 <ol>
 <li>增加一个或多个全局方法。例如<a href="https://github.com/vuejs/vue-element" target="_blank" rel="external">vue-element</a>。</li>
-<li>增加一个或多个全局的内容：指示器/过滤器/转换。例如<a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">vue-touch</a></li>
+<li>增加一个或多个全局的内容：指令(Directives)/过滤器/转换。例如<a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">vue-touch</a></li>
 <li>增加一些Vue实例方法通过把这些实例方法放到Vue.prototype。实例方法的惯例是加一个<code>$</code>前缀，这样你就不会合用户的数据和方法混淆。</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">exports.install = <span class="function"><span class="keyword">function</span> <span class="params">(Vue, options)</span> </span>{</div><div class="line">  Vue.myGlobalMethod = ...          <span class="comment">// 1</span></div><div class="line">  Vue.directive(<span class="string">'my-directive'</span>, {}) <span class="comment">// 2</span></div><div class="line">  Vue.prototype.$myMethod = ...     <span class="comment">// 3</span></div><div class="line">}</div></pre></td></tr></table></figure>
@@ -118,7 +117,7 @@
 <h2 id="已存在的工具">已存在的工具</h2>
 <ul>
 <li><a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="external">vue-devtools</a>: 一个Chrome的开发工具为了调试vue程序。</li>
-<li><a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">vue-touch</a>: 使用Hammer.js实现的触摸手势指示器。</li>
+<li><a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">vue-touch</a>: 使用Hammer.js实现的触摸手势指令(Directives)。</li>
 <li><a href="https://github.com/vuejs/vue-element" target="_blank" rel="external">vue-element</a>: 用vue.js注册之定义的元素。</li>
 <li><a href="https://github.com/yyx990803/vue/wiki/User-Contributed-Components-&amp;-Tools" target="_blank" rel="external">用户贡献的工具列表</a></li>
 </ul>

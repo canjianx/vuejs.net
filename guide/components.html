@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -113,14 +112,14 @@
 <p>理解<code>Vue.extend()</code>和<code>Vue.component()</code>之间的不同是很重要的。因为<code>Vue</code>本身是个构造函数，<code>Vue.extend()</code>是一个<strong>类继承方法</strong>。它的任务是穿件一个<code>Vue</code>的子类然后返回它的构造函数。<code>Vue.component()</code>，另一方面来说，是一个<strong>内容注册函数</strong>和<code>Vue.directive()</code>还有<code>Vue.filter()</code>类似。它的任务是关联字符串ID到一个给定的构造函数。所以Vue.js可以从模板中获取它。当直接传递一个选项给<code>Vue.component()</code>，它在内部调用<code>Vue.extend()</code>。</p>
 <p>Vue.js支持两种不同的API范例：基于类的，命令式的，Backbone风格的API，还有基于标记的，说明的，web 组件风格的API。如果你有迷惑的地方，想想怎么通过<code>new Image()</code>或者<code>&lt;img&gt;</code>标签创建一个图像元素。两种都是有用的，Vue为了最大的灵活性也提供了两种方式。</p>
 <h2 id="动态组件">动态组件</h2>
-<p>你可以通过在<code>v-compoent</code>指示器内部使用大括号标签动态的在组件间切换，可以和路由器使用在一起用来做”页面切换”:</p>
+<p>你可以通过在<code>v-compoent</code>指令(Directives)内部使用大括号标签动态的在组件间切换，可以和路由器使用在一起用来做”页面切换”:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Vue({</div><div class="line">  el: <span class="string">'body'</span>,</div><div class="line">  data: {</div><div class="line">    currentView: <span class="string">'home'</span></div><div class="line">  },</div><div class="line">  components: {</div><div class="line">    home: { <span class="comment">/* ... */</span> },</div><div class="line">    posts: { <span class="comment">/* ... */</span> },</div><div class="line">    archive: { <span class="comment">/* ... */</span> }</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
 
 
 
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"{&#123;currentView&#125;}"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- content changes when vm.currentview changes! --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p>如果你想保持切换掉的组件保持活动，你可以保存它的状态避免它重渲染，你可以增加一个<code>keep-alive</code>的指示器参数：</p>
+<p>如果你想保持切换掉的组件保持活动，你可以保存它的状态避免它重渲染，你可以增加一个<code>keep-alive</code>的指令(Directives)参数：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"{&#123;currentView&#125;}"</span> <span class="attribute">keep-alive</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- inactive components will be cached! --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h2 id="组件的生命周期">组件的生命周期</h2>
@@ -137,7 +136,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">child.a = <span class="number">4</span></div><div class="line"><span class="built_in">console</span>.log(parent.a) <span class="comment">// -&gt; 4</span></div><div class="line"><span class="built_in">console</span>.log(child.hasOwnProperty(<span class="string">'a'</span>)) <span class="comment">// -&gt; false</span></div></pre></td></tr></table></figure>
 
 <h3 id="明确的数据传递">明确的数据传递</h3>
-<p>通过绝度域明确的传递数据到子组件，我们可以使用<code>v-with</code>指示器。当给了一个单独的不带参数的keypath，对应的父数据中的值会被传递到子组件中，作为它的<code>$data</code>。这就意味着传递下来的数据必须是一个对象，它将会覆盖子组件中可能有的默认的<code>$data</code>对象。</p>
+<p>通过绝度域明确的传递数据到子组件，我们可以使用<code>v-with</code>指令(Directives)。当给了一个单独的不带参数的keypath，对应的父数据中的值会被传递到子组件中，作为它的<code>$data</code>。这就意味着传递下来的数据必须是一个对象，它将会覆盖子组件中可能有的默认的<code>$data</code>对象。</p>
 <p><strong>例子:</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo-1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">p</span> <span class="attribute">v-component</span>=<span class="value">"user-profile"</span> <span class="attribute">v-with</span>=<span class="value">"user"</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
@@ -250,7 +249,7 @@ var parent = new Vue({
 </script>
 
 <h2 id="私有内容">私有内容</h2>
-<p>有些时候一个组件需要使用一些内容，比如指示器，过滤器，或者它自己的子组件，但是希望保持他们的封装性一遍组件自己在其他地方也可以使用。你可以通过私有内容实例化选项。私有内容只能被所属的组件和它的子组件访问。</p>
+<p>有些时候一个组件需要使用一些内容，比如指令(Directives)，过滤器，或者它自己的子组件，但是希望保持他们的封装性一遍组件自己在其他地方也可以使用。你可以通过私有内容实例化选项。私有内容只能被所属的组件和它的子组件访问。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// All 5 types of assets</span></div><div class="line"><span class="keyword">var</span> MyComponent = Vue.extend({</div><div class="line">  directives: {</div><div class="line">    <span class="comment">// id : definition pairs same with the global methods</span></div><div class="line">    <span class="string">'private-directive'</span>: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">      <span class="comment">// ...</span></div><div class="line">    }</div><div class="line">  },</div><div class="line">  filters: {</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  },</div><div class="line">  components: {</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  },</div><div class="line">  partials: {</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  },</div><div class="line">  effects: {</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
 
 <p>可选择的你可以增加私有属性到一个现存的组件构造函数，使用和全局内容注册方法一样的链式API：</p>

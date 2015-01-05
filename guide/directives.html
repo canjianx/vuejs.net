@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>指示器 - vue.js</title>
+        <title>指令(Directives) - vue.js</title>
         <meta charset="utf-8">
         <meta name="description" content="Vue.js - Intuitive, Fast and Composable MVVM for building interactive interfaces.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -56,7 +55,7 @@
             
                 <li><a href="/guide/index.html" class="sidebar-link">开始</a></li>
             
-                <li><a href="/guide/directives.html" class="sidebar-link current">指示器</a></li>
+                <li><a href="/guide/directives.html" class="sidebar-link current">指令(Directives)</a></li>
             
                 <li><a href="/guide/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -68,7 +67,7 @@
             
                 <li><a href="/guide/computed.html" class="sidebar-link">计算属性</a></li>
             
-                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指示器</a></li>
+                <li><a href="/guide/custom-directive.html" class="sidebar-link">自定义指令(Directives)</a></li>
             
                 <li><a href="/guide/custom-filter.html" class="sidebar-link">自定义过滤器</a></li>
             
@@ -88,15 +87,15 @@
 </div>
 
 <div class="content guide with-sidebar">
-    <h1>指示器</h1>
+    <h1>指令(Directives)</h1>
     <h2 id="概要">概要</h2>
-<p>如果你之前没有用过AngularJS，那么你可能不知道什么是指示器。本质上，指示器是一些特殊的标记用来告诉库对一个DOM元素做一些事情。在Vue.js，只是的概念是比Angular彻底的简化。一个Vue.js的指示器只是出现在HTML前置属性中的，例如：</p>
+<p>如果你之前没有用过AngularJS，那么你可能不知道什么是指令(Directives)。本质上，指令(Directives)是一些特殊的标记用来告诉库对一个DOM元素做一些事情。在Vue.js，只是的概念是比Angular彻底的简化。一个Vue.js的指令(Directives)只是出现在HTML前置属性中的，例如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">element</span></span></div><div class="line">  <span class="attribute">prefix-directiveId</span>=<span class="value">"[argument:] expression [| filters...]"</span>&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">element</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <h2 id="简单的例子">简单的例子</h2>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-text</span>=<span class="value">"message"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p>这里前缀<code>v</code>是默认的。这个指示器的ID是<code>text</code>而且表达式是<code>message</code>。这个指示器告诉Vue.js当Vue实例<code>message</code>属性修改的时候，更新这个div的<code>textContent</code>。</p>
+<p>这里前缀<code>v</code>是默认的。这个指令(Directives)的ID是<code>text</code>而且表达式是<code>message</code>。这个指令(Directives)告诉Vue.js当Vue实例<code>message</code>属性修改的时候，更新这个div的<code>textContent</code>。</p>
 <h2 id="内部表达式">内部表达式</h2>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-text</span>=<span class="value">"'hello ' + user.firstName + ' ' + user.lastName"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
@@ -107,15 +106,15 @@
 <h2 id="参数">参数</h2>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-on</span>=<span class="value">"click : clickHandler"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p>有些指令在表达式或者关键路径之前需要一个参数。在这个例子里<code>click</code>参数指示我们想<code>v-on</code>指示器去监听一个点击事件，然后调用ViewModel实例的<code>clickHandler</code>方法。</p>
+<p>有些指令在表达式或者关键路径之前需要一个参数。在这个例子里<code>click</code>参数指示我们想<code>v-on</code>指令(Directives)去监听一个点击事件，然后调用ViewModel实例的<code>clickHandler</code>方法。</p>
 <h2 id="过滤器">过滤器</h2>
-<p>过滤器可以附加在表达式或者关键路径指示器后在更新DOM之前处理值。过滤器使用单向管道(<code>|</code>)表示类似shell脚本。更多信息请看<a href="/guide/filters.html">深入过滤器</a>。</p>
+<p>过滤器可以附加在表达式或者关键路径指令(Directives)后在更新DOM之前处理值。过滤器使用单向管道(<code>|</code>)表示类似shell脚本。更多信息请看<a href="/guide/filters.html">深入过滤器</a>。</p>
 <h2 id="多子句">多子句</h2>
-<p>你可以在一个属性中创建一个指示器的多绑定，用逗号隔开。下面的钩子就是多指示器实例。</p>
+<p>你可以在一个属性中创建一个指令(Directives)的多绑定，用逗号隔开。下面的钩子就是多指令(Directives)实例。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-on</span>=<span class="value">"</span></span></div><div class="line">  click   : onClick,</div><div class="line">  keyup   : onKeyup,</div><div class="line">  keydown : onKeydown</div><div class="line">"&gt;</div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<h2 id="指示器字面量">指示器字面量</h2>
-<p>一些指示器不创建数据绑定 - 它们简单的去属性的字面量。例如<code>v-component</code>指示器：</p>
+<h2 id="指令(Directives)字面量">指令(Directives)字面量</h2>
+<p>一些指令(Directives)不创建数据绑定 - 它们简单的去属性的字面量。例如<code>v-component</code>指令(Directives)：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"my-component"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>这里<code>&quot;my-component&quot;</code>不是一个数据属性 - 这是Vue.js使用的字串id来查找匹配的组件构造函数。</p>
@@ -123,13 +122,13 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-component</span>=<span class="value">"{&#123; isOwner ? 'owner-panel' : 'guest-panel' &#125;}"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>当大括号里面的表达式改变了，关联的组件也会做相应的渲染。</p>
-<p>然而，注意<code>v-component</code>和<code>v-partial</code>是仅存的有双向绑定行为的字面量指示器，其他字面量指示器里的大括号表达式，例如<code>v-ref</code>，是只求值<strong>一次</strong>。当指示器被编译后，它就不在相应值的改变了。</p>
-<p>字面量指示器的全列表可以在这里找到<a href="/api/directives.html#Literal_Directives">API文档</a>。</p>
-<h2 id="空指示器">空指示器</h2>
-<p>有一些控制器不需要属性值 - 它们只是简单的对一个元素做一些事，只做一次，例如<code>v-pre</code>指示器：</p>
+<p>然而，注意<code>v-component</code>和<code>v-partial</code>是仅存的有双向绑定行为的字面量指令(Directives)，其他字面量指令(Directives)里的大括号表达式，例如<code>v-ref</code>，是只求值<strong>一次</strong>。当指令(Directives)被编译后，它就不在相应值的改变了。</p>
+<p>字面量指令(Directives)的全列表可以在这里找到<a href="/api/directives.html#Literal_Directives">API文档</a>。</p>
+<h2 id="空指令(Directives)">空指令(Directives)</h2>
+<p>有一些控制器不需要属性值 - 它们只是简单的对一个元素做一些事，只做一次，例如<code>v-pre</code>指令(Directives)：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">v-pre</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- markup in here will not be compiled --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
-<p>所有的空指示器列表可以在<a href="/api/directives.html#Empty_Directives">API文档</a>找到。</p>
+<p>所有的空指令(Directives)列表可以在<a href="/api/directives.html#Empty_Directives">API文档</a>找到。</p>
 <p>接下来，让我讨论<a href="/guide/filters.html">过滤器</a>。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!

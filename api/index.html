@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -62,7 +61,7 @@
             
                 <li><a href="/api/global-api.html" class="sidebar-link">全局 API</a></li>
             
-                <li><a href="/api/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/api/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/api/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -78,11 +77,11 @@
 
 <p>当你实例化一个Vue实例的时候，你需要传入一个包含了DOM元素，数据对象，混入方法，生命周期回调等等信息的选项对象。完整列表看<a href="/api/options.html">实例化选项</a></p>
 <p>每个Vue实例本质上是一个VM对象（就是贯穿文档中的<code>vm</code>）。它有一个关联的DOM元素<code>$el</code>，这就是MVVM中的V，它也关联一个javascript对象<code>$data</code>, 它就是MVVM中的M。修改M将导致更新V。双向绑定的，用户修改了V的值将导致M中的值修改。更多细节看<a href="/api/instance-properties.html">实例属性</a>。</p>
-<p>如果你在实例化的时候提供了<code>el</code>选项，Vue实例会立刻进入编译进程，不然，它将会等到<code>vm.$mount()</code>调用之后才进行编译。在编译过程中，Vue遍历DOM收集它里面的指示器，然后用这些指示器关联数据和DOM。一旦关联，这些DOM节点称为被Vue实例管理了。一个DOM节点只能被一个Vue实例管理，而且应该只初始化一次。</p>
+<p>如果你在实例化的时候提供了<code>el</code>选项，Vue实例会立刻进入编译进程，不然，它将会等到<code>vm.$mount()</code>调用之后才进行编译。在编译过程中，Vue遍历DOM收集它里面的指令(Directives)，然后用这些指令(Directives)关联数据和DOM。一旦关联，这些DOM节点称为被Vue实例管理了。一个DOM节点只能被一个Vue实例管理，而且应该只初始化一次。</p>
 <p>Vue实例代理访问他们的<code>$data</code>对象，所以如果你有<code>vm.$data.msg</code>你可以这样<code>vm.msg</code>访问。这看上去想魔法，但是它完全是可选的。你可以直接像这样访问<code>vm.$data.msg</code>。然而知道<code>vm</code>和<code>vm.$data</code>的不同点还是很重要的，因为前者不能被其他的Vue实例作为数据监控。</p>
 <p>同样值得注意的是,数据对象不一定属于单个Vue实例 - 多个VM可以监控同一份数据，不论是直接作为<code>$data</code>还是嵌套在它里面。在多个组件需要对可共享的全局对象状态作出反应的时候是很有用的。</p>
 <p>每个Vue实例也有许多的<a href="/api/instance-methods.html">实例方法</a>，包含了数据监控，事件沟通，DOM管理等。</p>
-<p>最后，<code>Vue</code>构造函数自己也是暴露在<a href="/api/global-api.html">全局 API</a>中，这就允许你扩展<code>Vue</code>类，配置全局设置，注册全局的自定义的东西如组件，指示器，过滤等等。</p>
+<p>最后，<code>Vue</code>构造函数自己也是暴露在<a href="/api/global-api.html">全局 API</a>中，这就允许你扩展<code>Vue</code>类，配置全局设置，注册全局的自定义的东西如组件，指令(Directives)，过滤等等。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!
         <!-- Site Meter -->

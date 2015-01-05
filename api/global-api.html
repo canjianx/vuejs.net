@@ -12,7 +12,6 @@
         </script>
         <link rel="stylesheet" href="/css/page.css" type="text/css">
 
-        
         <script src="/js/vue.min.js"></script>
     </head>
     <body>
@@ -62,7 +61,7 @@
             
                 <li><a href="/api/global-api.html" class="sidebar-link current">全局 API</a></li>
             
-                <li><a href="/api/directives.html" class="sidebar-link">指示器</a></li>
+                <li><a href="/api/directives.html" class="sidebar-link">指令(Directives)</a></li>
             
                 <li><a href="/api/filters.html" class="sidebar-link">过滤器</a></li>
             
@@ -75,7 +74,7 @@
     <h1>全局 API</h1>
     <h3 id="Vue-config">Vue.config</h3>
 <p><code>Vue.config</code>是一个包含了Vue的全局设置的一个对象。这里是一个有效的设置项列表和它们的默认值：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="comment">// 是否打印堆栈信息？</span></div><div class="line">  debug: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 指示器前缀</span></div><div class="line">  prefix: <span class="string">'v-'</span>,</div><div class="line">  <span class="comment">// 插入到HTML的插入分隔符， add</span></div><div class="line">  <span class="comment">// 1 extra outer-most character.</span></div><div class="line">  delimiters: [<span class="string">'{&#123;'</span>, <span class="string">'&#125;}'</span>],</div><div class="line">  <span class="comment">// 不要警告信息？</span></div><div class="line">  silent: <span class="literal">false</span>,</div><div class="line">  <span class="comment">// 插入大括号绑定？</span></div><div class="line">  interpolate: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 使用异步更新(for directives & watchers)？</span></div><div class="line">  async: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 允许修改监控数组的原型链？</span></div><div class="line">  proto: <span class="literal">true</span></div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  <span class="comment">// 是否打印堆栈信息？</span></div><div class="line">  debug: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 指令(Directives)前缀</span></div><div class="line">  prefix: <span class="string">'v-'</span>,</div><div class="line">  <span class="comment">// 插入到HTML的插入分隔符， add</span></div><div class="line">  <span class="comment">// 1 extra outer-most character.</span></div><div class="line">  delimiters: [<span class="string">'{&#123;'</span>, <span class="string">'&#125;}'</span>],</div><div class="line">  <span class="comment">// 不要警告信息？</span></div><div class="line">  silent: <span class="literal">false</span>,</div><div class="line">  <span class="comment">// 插入大括号绑定？</span></div><div class="line">  interpolate: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 使用异步更新(for directives & watchers)？</span></div><div class="line">  async: <span class="literal">true</span>,</div><div class="line">  <span class="comment">// 允许修改监控数组的原型链？</span></div><div class="line">  proto: <span class="literal">true</span></div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>你可以直接改这些设置项。例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vue.config.debug = <span class="literal">true</span> <span class="comment">// turn on debugging mode</span></div></pre></td></tr></table></figure>
@@ -100,7 +99,7 @@
 <li><strong>id</strong> <code>String</code></li>
 <li><strong>definition</strong> <code>Function</code> or <code>Object</code> <em>optional</em></li>
 </ul>
-<p>注册或者获取一个自定义的指示器。更多的信息请看<a href="/guide/custom-directive.html">写一个自定义的指示器</a>。</p>
+<p>注册或者获取一个自定义的指令(Directives)。更多的信息请看<a href="/guide/custom-directive.html">写一个自定义的指令(Directives)</a>。</p>
 <h3 id="Vue-filter(_id,_[definition]_)">Vue.filter( id, [definition] )</h3>
 <ul>
 <li><strong>id</strong> <code>String</code></li>
@@ -148,7 +147,7 @@
 </ul>
 <p>增加一个Vue.js的插件。如果插件是一个对象，它必须有一个<code>install</code>方法。如果他自己就是一个函数，它将会被当成<code>install</code>方法。这个方法将会把Vue当成参数调用。更多信息请看<a href="/guide/extending.html#Extend_with_Plugins">插件</a>。</p>
 <h3 id="Vue-util">Vue.util</h3>
-<p>暴露内部的<code>util</code>模块，它包含了很多实用的方法。这些给高级的插件/指示器准备的，所以你需要看看源码他们是怎样的。</p>
+<p>暴露内部的<code>util</code>模块，它包含了很多实用的方法。这些给高级的插件/指令(Directives)准备的，所以你需要看看源码他们是怎样的。</p>
 
     <div class="footer">捕捉了错误或者想给文档做一些贡献？就 <a href="https://github.com/vuejs/vuejs.org" target="_blank">Fork this site on Github</a>!
         <!-- Site Meter -->
